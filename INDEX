@@ -1,0 +1,16 @@
+bic.glm                 Bayesian Model Averaging for generalized
+                        linear models.
+bic.surv                bic.surv
+bic.surv.formula        ~~function to do ... ~~
+bic.surv                bic.surv
+bicreg                  bicreg
+glib                    glib
+imageplot               A function to create an image of models used
+                        in Bayesian model averaging
+MC3.REG                 MC3.REG
+out.lmsreg              out.lmsreg
+plot.bicreg             Plots the posterior distributions of
+                        coefficients from a bicreg, bic.glm, bic.surv
+                        or glib object
+race                    Scottish Hill Racing data
+summary.bic             Summaries of Bayesian model averaging objects
