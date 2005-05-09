@@ -4,7 +4,8 @@
 \description{Bayesian Model Averaging accounts for the model uncertainty inherent in the variable selection problem by averaging over the best models in the model class according to approximate posterior model probability.
 }
 \usage{
-bicreg(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, drop.factor.levels = TRUE)
+bicreg(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, 
+       drop.factor.levels = TRUE, nbest = 10)
 }
 \arguments{
   \item{x}{ a matrix of independent variables }
@@ -14,6 +15,7 @@ bicreg(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, drop.
   \item{OR}{ a number specifying the maximum ratio for excluding models in Occam's window }
   \item{maxCol}{ a number specifying the maximum number of columns in the design matrix (including the intercept) to be kept. }
   \item{drop.factor.levels}{ logical. Indicates whether factor levels can be individually dropped in the stepwise procedure to reduce the number of columns in the design matrix, or if a factor can be dropped only in its entirety. }
+  \item{nbest}{ a value specifying the number of models of each size returned to bic.glm by the leaps algorithm.}
 }
 \details{
 Bayesian Model Averaging accounts for the model uncertainty inherent in the variable selection problem by averaging over the best models in the model class according to the approximate posterior model probabilities.  

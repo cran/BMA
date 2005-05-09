@@ -1,0 +1,7 @@
+
+CHANGES for BMA 3.01
+- changed bicreg to allow for more than 31 variables before stepwise elimination occurs
+- added parameter nbest to bicreg
+- minor documentation changes
+- fixed README file
+- added CHANGELOG file

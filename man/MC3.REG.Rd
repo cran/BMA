@@ -82,8 +82,9 @@ The implementation of this function is different from that used in the Splus fun
 # Example 1:   Scottish hill racing data.
 
 data(race)
-b<- out.ltsreg(race[,-1],race[,1],2)
-races.run1<-MC3.REG(race[,1],race[,-1],num.its=20000,c(FALSE,TRUE),rep(TRUE,length(b)), b, PI = .1, K = 7, nu = .2, lambda = .1684, phi = 9.2)
+b<- out.ltsreg(race[,-1], race[,1], 2)
+races.run1<-MC3.REG(race[,1], race[,-1], num.its=20000, c(FALSE,TRUE), rep(TRUE,length(b)), b, 
+   PI = .1, K = 7, nu = .2, lambda = .1684, phi = 9.2)
 races.run1
 summary(races.run1)
 

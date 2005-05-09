@@ -35,7 +35,7 @@ x$ptl<- as.factor(x$ptl)
 x$ht <- as.factor(x$ht)
 x$ui <- as.factor(x$ui)
 
-glm.out1<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial", factor.type=TRUE)
+glm.out1<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial")
 imageplot.bma(glm.out1)
 
 
@@ -60,4 +60,3 @@ imageplot.bma(glm.birthwt)
 }
 \keyword{regression}
 \keyword{models}
-

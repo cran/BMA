@@ -15,12 +15,12 @@ bic.surv(x, ...)
 \usage{
 
 bic.surv(x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30, 
-	 prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
-	 factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
+     prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
+     factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
 
 bic.surv(f, data, strict = FALSE, OR = 20, maxCol = 30, 
-	 prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
-	 factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
+     prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
+     factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
 }
 
 \arguments{
@@ -30,28 +30,28 @@ bic.surv(f, data, strict = FALSE, OR = 20, maxCol = 30,
   \item{f}{a survival model formula}
   \item{data}{a data frame containing the variables in the model.}
   \item{strict}{ logical indicating whether models with more likely submodels are eliminated. 
-		\code{FALSE} returns all models whose posterior model probability is within a factor of \code{1/OR} of that of the best model.}
+        \code{FALSE} returns all models whose posterior model probability is within a factor of \code{1/OR} of that of the best model.}
   \item{OR}{ a number specifying the maximum ratio for excluding models in Occam's window }
   \item{maxCol}{ a number specifying the maximum number of columns in design matrix (including intercept) to be kept. }
  
   \item{prior.param}{a vector of prior probabilities that parameters are non-zero. Default puts a prior of .5 on all parameters.  Setting to 1 forces the variable into the model.   }
    \item{OR.fix}{width of the window which keeps models after the leaps approximation is done.  
-		Because the leaps and bounds gives only an approximation to BIC, there is a need to increase the window at 
-		this first "cut" so as to ensure that no good models are deleted. 
- 		The level of this cut is at \code{1/(OR^OR.fix)}; the default value for \code{OR.fix} is 2.}
+        Because the leaps and bounds gives only an approximation to BIC, there is a need to increase the window at 
+        this first "cut" so as to ensure that no good models are deleted. 
+        The level of this cut is at \code{1/(OR^OR.fix)}; the default value for \code{OR.fix} is 2.}
   \item{nbest}{a value specifying the number of models of each size returned to bic.glm by the modified leaps algorithm.}
   \item{factor.type}{a logical value specifying how variables of class "factor" are handled. 
-		A factor variable with d levels is turned into (d-1) dummy variables using a treatment contrast.  
-		If \code{factor.type = TRUE}, models will contain either all or none of these dummy variables.  
-		If \code{factor.type = FALSE}, models are free  to select the dummy variables independently.  
-		In this case, factor.prior.adjust determines the prior on these variables.}
+        A factor variable with d levels is turned into (d-1) dummy variables using a treatment contrast.  
+        If \code{factor.type = TRUE}, models will contain either all or none of these dummy variables.  
+        If \code{factor.type = FALSE}, models are free  to select the dummy variables independently.  
+        In this case, factor.prior.adjust determines the prior on these variables.}
   \item{factor.prior.adjust}{a logical value specifying if the prior distribution on dummy variables for factors 
-		should be adjusted when \code{factor.type=F}.
-		When \code{factor.prior.adjust=FALSE}, all dummy variables for variable i have prior equal to \code{prior.param[i]}.
-		Note that this makes the prior probability of the union of these variables much higher than \code{prior.param[i]}.  
-		Setting \code{factor.prior.adjust=T} corrects for this so that the union of the dummies equals \code{prior.param[i]}
-  		(and hence the deletion of the factor has a prior of \code{1-prior.param[i]}).  
-		This adjustment changes the individual priors on each dummy variable to \code{1-(1-pp[i])^(1/(k+1))}.}
+        should be adjusted when \code{factor.type=F}.
+        When \code{factor.prior.adjust=FALSE}, all dummy variables for variable i have prior equal to \code{prior.param[i]}.
+        Note that this makes the prior probability of the union of these variables much higher than \code{prior.param[i]}.  
+        Setting \code{factor.prior.adjust=T} corrects for this so that the union of the dummies equals \code{prior.param[i]}
+        (and hence the deletion of the factor has a prior of \code{1-prior.param[i]}).  
+        This adjustment changes the individual priors on each dummy variable to \code{1-(1-pp[i])^(1/(k+1))}.}
   \item{call}{used internally}
 \item{...}{unused}
 }
@@ -83,6 +83,10 @@ An object of class \code{bic.glm} is a list containing at least the following co
   \item{reduced}{a logical indicating whether any variables were dropped before model averaging}
   \item{dropped}{a vector containing the names of those variables dropped before model averaging}
   \item{call}{the matched call that created the bma.lm object}
+}
+\note{If more than \code{maxcol} variables are supplied, then bic.surv does stepwise elimination of variables until \code{maxcol} variables are reached.
+
+Many thanks to Sanford Weisberg for making source code for leaps available.
 }
 \references{ Volinsky, C.T., Madigan, D., Raftery, A.E. and Kronmal, R.A. (1997). "Bayesian Model Averaging in Proportional Hazard Models:  Assessing the Risk of a Stroke."  Applied Statistics 46: 433-448}
 \author{Chris Volinsky \email{volinsky@AT@research.att.com}, 

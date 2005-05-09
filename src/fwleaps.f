@@ -8,7 +8,7 @@ c ******************************************************************** *
 c Adaptation of Furnival and Wilson leaps and bounds algorithm, adapted
 c by Ian Painter, 2004. Modification consists of commenting out all
 c write statements, and returning results in the vectors RSS and Subss.
-c Code kindly provided by ....
+c Code kindly provided by Sanford Weisberg.
 c                                                                      *
 c                   Regressions by leaps and bounds                    *
 c                     G.M.Furnival and R.W.Wilson                      *

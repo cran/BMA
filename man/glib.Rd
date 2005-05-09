@@ -15,10 +15,11 @@ glib(x, ...)
 
 \usage{
 
-glib(x, y, n = rep(1, nrow(x)), error = "poisson", link = "log", scale = 1, models = NULL, 
-     phi = c(1, 1.65, 5), psi = 1, nu = 0, pmw = rep(1, nrow(models)), 
-     glimest = TRUE, glimvar = FALSE, output.priorvar = FALSE, post.bymodel = TRUE, 
-     output.postvar = FALSE, priormean = NULL, priorvar = NULL, nbest = 10, call = NULL, ...)
+glib(x, y, n = rep(1, nrow(x)), error = "poisson", link = "log", 
+     scale = 1, models = NULL,  phi = c(1, 1.65, 5), psi = 1, nu = 0, 
+     pmw = rep(1, nrow(models)), glimest = TRUE, glimvar = FALSE, 
+     output.priorvar = FALSE, post.bymodel = TRUE, output.postvar = FALSE, 
+     priormean = NULL, priorvar = NULL, nbest = 10, call = NULL, ...)
 
 glib(g, scale = 1, phi = c(1, 1.65, 5), psi = 1, nu = 0, 
      glimest = TRUE, glimvar = FALSE, output.priorvar = F, post.bymodel = TRUE, 
@@ -35,24 +36,24 @@ as.bic.glm( g, phi.index=1)
   \item{link}{a string indicating the link to use. Currently "identity", "log", "logit", "probit", "sqrt", "inverse" and "loglog" are implemented.}
   \item{scale}{the scale factor for the model. May be either a numeric constant or a string specifying the estimation, either "deviance" or "pearson". The default value is 1 for "binomial" and "poisson" error structures, and "pearson" for the others.}
   \item{models}{ an optional matrix representing the models to be averaged over. 
-		\code{models} is a \code{n} x \code{p} matrix in which each row represents a model. 
-		The corresponding entry in the row is 1 if that variable is included in the model; 0 if not. 
-		The default value is \code{NULL} which will cause \code{glib} to call \code{bic.glm} with the parameter \code{occam.window} set to \code{FALSE} to obtain the models to average over.}
+        \code{models} is a \code{n} x \code{p} matrix in which each row represents a model. 
+        The corresponding entry in the row is 1 if that variable is included in the model; 0 if not. 
+        The default value is \code{NULL} which will cause \code{glib} to call \code{bic.glm} with the parameter \code{occam.window} set to \code{FALSE} to obtain the models to average over.}
   \item{phi}{a vector of phi values. Default: \code{1}.}
   \item{psi}{a scalar prior parameter. Default: \code{1}. }
   \item{nu}{a scalar prior parameter. Default: 0 }
   \item{pmw}{a vector of prior model weights. These must be positive, but do not have to sum to one. 
-		The prior model probabilities are given by  \code{pmw/sum(pmw)}. 
-		The default is a vector of 1's of length \code{nrow(models)}}
+        The prior model probabilities are given by  \code{pmw/sum(pmw)}. 
+        The default is a vector of 1's of length \code{nrow(models)}}
   \item{glimest}{ a logical value specifying whether to output estimates and standard errors for each model. }
   \item{glimvar}{ a logical value specifying whether glim variance matrices are output for each model.}
   \item{output.priorvar}{ a logical value specifying whether the prior variance is output for each model and value of phi combination.}
   \item{post.bymodel}{a logical value specifying whether to output the posterior mean and sd for each model and value of phi combination.}
   \item{output.postvar}{a logical value specifying whether to output the posterior variance matrix for each model and value of phi combination.}
   \item{priormean}{an optional vector of length p+1 containing a user specified prior mean on the variables (including the intercept),
-	 	where p=number of independent variables. }
+        where p=number of independent variables. }
   \item{priorvar}{an optional matrix containing a user specified prior variance matrix, a (p+1) x (p+1) matrix. 
-		Default has the prior variance estimated as in Raftery(1996). }
+        Default has the prior variance estimated as in Raftery(1996). }
   \item{nbest}{ an integer giving the number of best models of each size to be returned by bic.glm if \code{models == NULL}}
 \item{call}{the call to the function}
 \item{phi.index}{an index to the value of phi to use when converting a \code{glib} object to a \code{bic.glm} object}
@@ -67,32 +68,32 @@ This also calculates posterior distributions from a set of reference proper prio
 \code{glib} returns an object of type \code{glib}, which is a list containing the following items:
   \item{inputs }{a list echoing the inputs (x,y,n,error,link,models,phi,psi,nu) }
   \item{bf }{a list containing the model comparison results:
- 	\item{twologB10}{an \code{nmodel} x \code{nphi} matrix whose \code{[i,j]} element is 2logB10 for model i against the null model with phi=phi[j]. A Laplace approximation (one-step Newton) is used. }
-	\item{postprob}{ a matrix containing the posterior probabilities of the models for each value of phi. }
-	\item{deviance}{ a vector containing the deviances for the models. }
-	\item{chi2}{ a vector containing the (DV0-DV1)/scale for the models }
- 	\item{npar}{ a vector containing the number of parameters estimated for each model. }
-	\item{scale}{ the estimated or assigned scale used }}
+    \item{twologB10}{an \code{nmodel} x \code{nphi} matrix whose \code{[i,j]} element is 2logB10 for model i against the null model with phi=phi[j]. A Laplace approximation (one-step Newton) is used. }
+    \item{postprob}{ a matrix containing the posterior probabilities of the models for each value of phi. }
+    \item{deviance}{ a vector containing the deviances for the models. }
+    \item{chi2}{ a vector containing the (DV0-DV1)/scale for the models }
+    \item{npar}{ a vector containing the number of parameters estimated for each model. }
+    \item{scale}{ the estimated or assigned scale used }}
 
 \item{posterior }{a list containing the Bayesian model mixing results: 
-	\item{prob0}{ an \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior probability that the 
-			  parameter corresponding to the k-th column of x is zero, for the j-th value of phi. }
- 	\item{mean}{ a \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior mean of the parameter corresponding to the k-th column of x, for the j-th value of phi.}
- 	\item{sd}{ as for mean, but for the posterior standard deviation. }
-		NOTE: Both mean and sd are CONDITIONAL on the parameter being non-zero. They do not include the intercept.  }
+    \item{prob0}{ an \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior probability that the 
+              parameter corresponding to the k-th column of x is zero, for the j-th value of phi. }
+    \item{mean}{ a \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior mean of the parameter corresponding to the k-th column of x, for the j-th value of phi.}
+    \item{sd}{ as for mean, but for the posterior standard deviation. }
+        NOTE: Both mean and sd are CONDITIONAL on the parameter being non-zero. They do not include the intercept.  }
 \item{glim.est }{a list containing the GLIM estimates for the different models:
- 	\item{coef}{An nmodel-list, each of whose elements is the coef value from  "glim" for one of the models.} 
-	\item{se}{ as coef, but contains standard errors.} 
-	\item{var}{ as coef, but contains variance matrices of the estimates.} } 
+    \item{coef}{An nmodel-list, each of whose elements is the coef value from  "glim" for one of the models.} 
+    \item{se}{ as coef, but contains standard errors.} 
+    \item{var}{ as coef, but contains variance matrices of the estimates.} } 
 \item{posterior.bymodel }{a list containing model-specific posterior means and sds:
-	\item{mean}{a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]xnphi} matrix, 
-			containing the posterior means of the npar[i] parameters of model i,  for each value of phi.} 
-	\item{sd}{ as for mean, but for posterior standard deviations.} 
-	\item{var}{ a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]} x \code{npar[i]} x \code{nphi} array, 
-			containing the posterior variance matrix of the parameters of  model i for each value of phi.}}
+    \item{mean}{a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]xnphi} matrix, 
+            containing the posterior means of the npar[i] parameters of model i,  for each value of phi.} 
+    \item{sd}{ as for mean, but for posterior standard deviations.} 
+    \item{var}{ a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]} x \code{npar[i]} x \code{nphi} array, 
+            containing the posterior variance matrix of the parameters of  model i for each value of phi.}}
 \item{prior }{a list containing the prior distributions: 
-	\item{mean}{ prior mean for the biggest model (this doesn't depend on phi)} 
-	\item{var}{ similar to corresponding member of posterior.bymodel.} }
+    \item{mean}{ prior mean for the biggest model (this doesn't depend on phi)} 
+    \item{var}{ similar to corresponding member of posterior.bymodel.} }
 \item{models }{ an array containing the models used.}
 \item{glm.out }{an object of type 'bic.glm' containing the results of any call to \code{bic.glm} }
 \item{call }{the call to the function}
@@ -122,11 +123,12 @@ y<- vaso[,3]
 n<- rep(1,times=length(y))
 
 finney.models<- rbind(
-	c(1, 0),
-	c(0, 1),
-	c(1, 1))
+    c(1, 0),
+    c(0, 1),
+    c(1, 1))
 
-finney.glib <- glib (x,y,n, error="binomial", link="logit", models=finney.models, glimvar=TRUE, output.priorvar=TRUE, output.postvar=TRUE)
+finney.glib <- glib (x,y,n, error="binomial", link="logit", models=finney.models, 
+   glimvar=TRUE, output.priorvar=TRUE, output.postvar=TRUE)
 summary(finney.glib)
 
 finney.bic.glm<- as.bic.glm(finney.glib)
@@ -135,19 +137,20 @@ plot(finney.bic.glm,mfrow=c(2,1))
 ### Yates (teeth) data. 
 
 x<- rbind(
-	c(0, 0, 0),
-	c(0, 1, 0),
-	c(1, 0, 0),
-	c(1, 1, 1))
+    c(0, 0, 0),
+    c(0, 1, 0),
+    c(1, 0, 0),
+    c(1, 1, 1))
 
 y<-c(4, 16, 1, 21)
 n<-c(1,1,1,1)
 
 models<- rbind(
-	c(1, 1, 0),
-	c(1, 1, 1))
+    c(1, 1, 0),
+    c(1, 1, 1))
 
-glib.yates <- glib (x,y,n,models=models,glimvar=TRUE,output.priorvar=TRUE,output.postvar=TRUE) 
+glib.yates <- glib (x,y,n,models=models,glimvar=TRUE,output.priorvar=TRUE,
+   output.postvar=TRUE) 
 summary(glib.yates)
 
 ### logistic regression with no models specified
@@ -175,4 +178,3 @@ plot(glm.birthwt)
 }
 \keyword{regression}
 \keyword{models}
-

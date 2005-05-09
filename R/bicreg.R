@@ -1,30 +1,39 @@
 library("leaps")
 
-bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, drop.factor.levels=TRUE)
+bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, drop.factor.levels=TRUE, nbest = 10)
 {
 
 
 
-    dropcols <- function(x, y, wt, maxCols = 30) {
-        x1.ldf <- data.frame(x, y = y, wt = wt)
-        lm.out <- lm(y ~ . - wt, data = x1.ldf, weights = wt)
+    dropcols <- function(x, y, wt, maxCols = 31) {
+        x1.ldf <- data.frame(x, y = y)
+        temp.wt<- wt
+               
+        lm.out <- lm(y ~ . , data = x1.ldf, weights = temp.wt)
+        form.vars<- all.vars(formula(lm.out))[-1]
+        
         any.dropped <- FALSE
         dropped.which <- NULL
-        while (length(lm.out$coefficients) > maxCol) {
+        while (length(lm.out$coefficients) > maxCol) 
+        {
             any.dropped <- TRUE
-            formch <- as.character(formula(lm.out))
+            
             droplm <- drop1(lm.out, test = "none")
             dropped <- row.names(droplm)[which.min(droplm$RSS[-1]) + 
                 1]
-            formla <- formula(paste(formch[2], formch[1], formch[3], 
-                "-", dropped))
-            lm.out <- lm(formla, data = x1.ldf, weights = wt)
+            dropped.index<- match(dropped, form.vars)
+            form.vars<- form.vars[-dropped.index]
+            
+            formla <- formula(paste("y", "~", paste(form.vars, collapse=" + "),sep=" "))
+            lm.out <- lm(formla, data = x1.ldf, weights = temp.wt)
             dropped.which <- c(dropped.which, dropped)
         }
+        
         new.var.names <- names(lm.out$coefficients)
         return(list(mm = model.matrix(lm.out)[, -1,drop=FALSE], any.dropped = any.dropped, 
             dropped = dropped.which, var.names = new.var.names))
     }
+
 
 
     cl <- match.call()
@@ -58,7 +67,7 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
         dropped <- xx$dropped
     nvar <- length(x[1, ])
     if (nvar > 2) {
-        a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]])
+        a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]], strictly.compatible = FALSE, nbest=nbest)
         a$r2 <- pmin(pmax(0, a$r2), 0.999)
         x.lm <- cbind.data.frame(y = y, as.data.frame(x[, a$which[2, 
             , drop = FALSE]]), w = wt)
