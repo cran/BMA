@@ -19,16 +19,16 @@
 \usage{
 
 \method{summary}{bicreg}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
-	     conditional = FALSE, display.dropped = FALSE, ...)
+         conditional = FALSE, display.dropped = FALSE, ...)
 
 \method{summary}{bic.glm}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
-	     conditional = FALSE, display.dropped = FALSE, ...)
+         conditional = FALSE, display.dropped = FALSE, ...)
 
 \method{summary}{bic.surv}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
-	     conditional = FALSE, display.dropped = FALSE, ...)
+         conditional = FALSE, display.dropped = FALSE, ...)
 
 \method{summary}{glib}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
-	     conditional = FALSE, index.phi=1, ...) 
+         conditional = FALSE, index.phi=1, ...) 
 
 \method{summary}{mc3}(object, n.models = 5, digits = max(3, getOption("digits") - 3), ...)
 
@@ -38,7 +38,8 @@
 
 \method{print}{bic.surv}(x, digits = max(3, getOption("digits") - 3), ...)
 
-\method{print}{mc3}(x, digits = max(3, getOption("digits") - 3), n.models = nrow(x$variables), ...)
+\method{print}{mc3}(x, digits = max(3, getOption("digits") - 3), 
+                    n.models = nrow(x$variables), ...)
 
 }
 \arguments{

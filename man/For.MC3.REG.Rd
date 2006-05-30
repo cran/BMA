@@ -10,15 +10,15 @@ For.MC3.REG(i, g, Ys, Xs, PI, K, nu, lambda, phi, outs.list)
 \arguments{
   \item{i}{the current iteration number.}
   \item{g}{a list containing the current state and the history of the Markov-Chain. This list is in the same form as the return value (see the 'value' section below):
-	\item{M0.var}{a logical vector specifying the variables in the current model.}
+    \item{M0.var}{a logical vector specifying the variables in the current model.}
         \item{M0.out}{a logical vector specifying the outliers in the current model.}
-	\item{M0.1}{a number representing the variables in the current model in binary form.}
-	\item{M0.2}{a number represnting the outliers in the current model in binary form.}
-	\item{outcnt}{the number of potential outliers} }
+    \item{M0.1}{a number representing the variables in the current model in binary form.}
+    \item{M0.2}{a number represnting the outliers in the current model in binary form.}
+    \item{outcnt}{the number of potential outliers} }
   \item{Ys}{the vector of scaled responses.}
   \item{Xs}{the matrix of scaled covariates.}
   \item{PI}{a hyperparameter indicating the prior probability of an outlier.  
-	    The default values are 0.1 if the data set has less than 50 observations, 0.02 otherwise. }
+        The default values are 0.1 if the data set has less than 50 observations, 0.02 otherwise. }
   \item{K}{ a hyperparameter indicating the outlier inflation factor }
   \item{nu}{ regression hyperparameter. Default value is 2.58 if r2 for the full model is less than 0.9 
              or 0.2 if r2 for the full model is greater than 0.9. }
@@ -34,13 +34,13 @@ For.MC3.REG(i, g, Ys, Xs, PI, K, nu, lambda, phi, outs.list)
 }
 \value{
   a list containing the current state and the history of the Markov-Chain, with components
-	\item{flag}{a 0/1 number specifying whether the previous Metropolis-Hastings step resulted in a changed state or not.}
-	\item{big.list}{a matrix containing the history of the Markov-Chain. Each row represents a unique model (combination of variables and outliers). The first column is the set of variables in the model (in binary form), the second column is the set of outliers in the model (in binary form), the third column is the log-posterior for the model (up to a constant) and the fourth column is the number of times that model has been visited.}
-	\item{M0.var}{a logical vector specifying the variables in the current model.}
+    \item{flag}{a 0/1 number specifying whether the previous Metropolis-Hastings step resulted in a changed state or not.}
+    \item{big.list}{a matrix containing the history of the Markov-Chain. Each row represents a unique model (combination of variables and outliers). The first column is the set of variables in the model (in binary form), the second column is the set of outliers in the model (in binary form), the third column is the log-posterior for the model (up to a constant) and the fourth column is the number of times that model has been visited.}
+    \item{M0.var}{a logical vector specifying the variables in the current model.}
         \item{M0.out}{a logical vector specifying the outliers in the current model.}
-	\item{M0.1}{a number representing the variables in the current model in binary form.}
-	\item{M0.2}{a number represnting the outliers in the current model in binary form.}
-	\item{outcnt}{the number of potential outliers}
+    \item{M0.1}{a number representing the variables in the current model in binary form.}
+    \item{M0.2}{a number represnting the outliers in the current model in binary form.}
+    \item{outcnt}{the number of potential outliers}
 }
 \references{    
 

@@ -22,7 +22,7 @@ data.frame
  
 
 }
-\reference{
+\references{
 Atkison, A.C., Comments on "Influential Observations, High Leverage Points, and Outliers in Linear Regression", Statistical Science, 1 (1986) 397-402
 
 }

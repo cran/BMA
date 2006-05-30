@@ -1,14 +1,16 @@
 bic.glm                 Bayesian Model Averaging for generalized
                         linear models.
-bic.surv                bic.surv
-bic.surv.formula        ~~function to do ... ~~
-bic.surv                bic.surv
-bicreg                  bicreg
-glib                    glib
+bic.surv                Bayesian Model Averaging for survival (cox) models.
+bicreg                  Bayesian Model Averaging for linear regression.
+glib                    Function to evaluate Bayes factors and account for model uncertainty in generalized linear models. 
+iBMA.glm			Iterated Bayesian Model Averaging variable selection for generalized linear models.
+iBMA.bicreg			Iterated Bayesian Model Averaging variable selection for linear models.
+iBMA.surv			Iterated Bayesian Model Averaging variable selection for survival models.
+
 imageplot               A function to create an image of models used
                         in Bayesian model averaging
-MC3.REG                 MC3.REG
-out.lmsreg              out.lmsreg
+MC3.REG                 Bayesian simultaneous variable selection and outlier identification
+orderplot			Function to plot status of iBMA iterations
 plot.bicreg             Plots the posterior distributions of
                         coefficients from a bicreg, bic.glm, bic.surv
                         or glib object

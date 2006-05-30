@@ -122,19 +122,23 @@ x$ptl<- as.factor(x$ptl)
 x$ht <- as.factor(x$ht)
 x$ui <- as.factor(x$ui)
 
-glm.out.FT<- bic.glm(x, y, strict = FALSE, OR = 20, glm.family="binomial", factor.type=TRUE)
+glm.out.FT<- bic.glm(x, y, strict = FALSE, OR = 20, glm.family="binomial", 
+    factor.type=TRUE)
 summary(glm.out.FT)
 imageplot.bma(glm.out.FT)
 
-glm.out.FF<- bic.glm(x, y, strict = FALSE, OR = 20, glm.family="binomial", factor.type=FALSE)
+glm.out.FF<- bic.glm(x, y, strict = FALSE, OR = 20, glm.family="binomial", 
+    factor.type=FALSE)
 summary(glm.out.FF)
 imageplot.bma(glm.out.FF)
 
-glm.out.TT<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial", factor.type=TRUE)
+glm.out.TT<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial", 
+    factor.type=TRUE)
 summary(glm.out.TT)
 imageplot.bma(glm.out.TT)
 
-glm.out.TF<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial", factor.type=FALSE)
+glm.out.TF<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial", 
+    factor.type=FALSE)
 summary(glm.out.TF)
 imageplot.bma(glm.out.TF)
 
@@ -150,7 +154,8 @@ sel<- veteran$status == 0
 x<- x[!sel,]
 surv.t<- surv.t[!sel]
 
-glm.out.va<- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse") ,factor.type=FALSE)
+glm.out.va<- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
+    factor.type=FALSE)
 summary(glm.out.va)
 imageplot.bma(glm.out.va)
 plot(glm.out.va)

@@ -118,8 +118,12 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
     label <- label[occam]
     which <- which[occam, , drop = FALSE]
     bic <- bic[occam]
-    postprob <- exp(-0.5 * bic)/sum(exp(-0.5 * bic))
-    postprob[is.na(postprob)] <- 1
+#    postprob <- exp(-0.5 * bic)/sum(exp(-0.5 * bic))
+
+     mbic<- bic - max(bic)
+     postprob <- exp(-0.5 * mbic)/sum(exp(-0.5 * mbic))
+     postprob[is.na(postprob)] <- 1
+
     order.bic <- order(bic, size, label)
     r2 <- r2[order.bic]
     size <- size[order.bic]
@@ -199,7 +203,7 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
     result <- list(postprob = postprob, namesx = xnames, label = label, 
         r2 = r2, bic = bic, size = (size - 1), which = which, 
         probne0 = c(probne0), postmean = Ebi, postsd = SDbi, 
-        condpostmean = CEbi, condpostsd = CSDbi, ols = EbiMk, 
+        condpostmean = CEbi, condpostsd = CSDbi, ols = EbiMk, mle = EbiMk, 
         se = sebiMk, reduced = reduced, dropped = dropped, call = cl, 
         n.models = length(postprob), n.vars = length(probne0))
     class(result) <- "bicreg"

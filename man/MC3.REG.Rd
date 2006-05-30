@@ -83,8 +83,9 @@ The implementation of this function is different from that used in the Splus fun
 
 data(race)
 b<- out.ltsreg(race[,-1], race[,1], 2)
-races.run1<-MC3.REG(race[,1], race[,-1], num.its=20000, c(FALSE,TRUE), rep(TRUE,length(b)), b, 
-   PI = .1, K = 7, nu = .2, lambda = .1684, phi = 9.2)
+races.run1<-MC3.REG(race[,1], race[,-1], num.its=20000, c(FALSE,TRUE), 
+                    rep(TRUE,length(b)), b, PI = .1, K = 7, nu = .2, 
+                    lambda = .1684, phi = 9.2)
 races.run1
 summary(races.run1)
 
@@ -95,7 +96,8 @@ data(UScrime)
 y.crime.log<- log(UScrime$y)
 x.crime.log<- UScrime[,-ncol(UScrime)]
 x.crime.log[,-2]<- log(x.crime.log[,-2])
-crime.run1<-MC3.REG(y.crime.log, x.crime.log, num.its=2000, rep(TRUE,15), outliers = FALSE)
+crime.run1<-MC3.REG(y.crime.log, x.crime.log, num.its=2000, 
+                    rep(TRUE,15), outliers = FALSE)
 crime.run1[1:25,]
 summary(crime.run1)
 

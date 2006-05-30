@@ -1,7 +1,16 @@
 
-CHANGES for BMA 3.01
-- changed bicreg to allow for more than 31 variables before stepwise elimination occurs
-- added parameter nbest to bicreg
-- minor documentation changes
-- fixed README file
-- added CHANGELOG file
+CHANGES for BMA 3.02
+- fixed problems in bic.glm that occurred when a two column response was specified for the binomial model, for example "cbind(y,n-y)~."
+
+- fixed problem in bicreg that could cause multiple models having posterior probability of 1 when very large in magnitude bic values occur
+
+- modified imageplot.bma
+    - changed color scheme so that variables with positive estimates appear as one color and variables with negative estimates occur as a different color.
+    - added options for ordering of variables (see documentation for details).
+
+- modified bicreg to return "mle" as a return parameter (equal to ols)
+
+- modified bicreg to work when only one model is selected
+
+- added methods for iterated BMA: iBMA.glm, iBMA.bicreg and iBMA.surv, together with summary and print functions for these methods, and a new graphic function 'orderplot'.
+

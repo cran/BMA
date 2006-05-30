@@ -120,8 +120,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
         for (i in 2:n.designx) if (isfac[designx[i]]) 
             designx.levels[i] <- sum(designx[1:i] == designx[i]) + 
                 1
-        x.df <- data.frame(x = x, y = y, wt = wt)
-        glm.out <- glm(y ~ . - wt, family = glm.family, weights = wt, 
+        x.df <- data.frame(x = x)#, y = y, wt = wt)
+        glm.out <- glm(y ~ . , family = glm.family, weights = wt, 
             data = x.df)
         glm.assign <- create.assign(x)
         while (length(glm.out$coefficients) > maxCol) {
@@ -131,7 +131,7 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
             x.df <- x.df[, -(dropped - 1)]
             designx.levels <- designx.levels[-dropped]
             designx <- designx[-dropped]
-            glm.out <- glm(y ~ . - wt, family = glm.family, weights = wt, 
+            glm.out <- glm(y ~ . , family = glm.family, weights = wt, 
                 data = x.df)
         }
         remaining.vars <- unique(designx[-1])
@@ -196,8 +196,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     output.names <- names(x)
     fn <- factor.names(x)
     factors <- !all(unlist(lapply(fn, is.null)))
-    x.df <- data.frame(x = x, y = y, wt = wt)
-    glm.out <- glm(y ~ . - wt, family = glm.family, weights = wt, 
+    x.df <- data.frame(x = x)#, y = y, wt = wt)
+    glm.out <- glm(y ~ . , family = glm.family, weights = wt, 
         data = x.df)
     glm.assign <- create.assign(x)
     fac.levels <- unlist(lapply(glm.assign, length)[-1])
@@ -258,8 +258,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     }
     xnames <- names(x)
     names(leaps.x) <- var.names
-    x.df <- data.frame(x = leaps.x, y = y, wt = wt)
-    glm.out <- glm(y ~ . - wt, family = glm.family, weights = wt, 
+    x.df <- data.frame(x = leaps.x)#, y = cbind(y), wt = wt)
+    glm.out <- glm(y ~ ., family = glm.family, weights = wt, 
         data = x.df, x = TRUE)
     glm.assign <- create.assign(leaps.x)
     if (factor.type == FALSE) 
@@ -349,8 +349,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
             glm.out <- glm(y ~ 1, family = glm.family, weights = wt)
         }
         else {
-            x.df <- data.frame(x = x[, which[k, ]], y = y, wt = wt)
-            glm.out <- glm(y ~ . - wt, data = x.df, family = glm.family, 
+            x.df <- data.frame(x = x[, which[k, ]])#, y = y, wt = wt)
+            glm.out <- glm(y ~ . , data = x.df, family = glm.family, 
                 weights = wt)
         }
         dev[k] <- glm.out$deviance
@@ -443,8 +443,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     # now calculate for intercept
     for (k in 1:nmod)
     {
-    	EbiMk[k,1]<- model.fits[[k]][1,1]
-    	sebiMk[k,1]<- model.fits[[k]][1,2]
+        EbiMk[k,1]<- model.fits[[k]][1,1]
+        sebiMk[k,1]<- model.fits[[k]][1,2]
     }
 
     Ebi <- postprob %*% EbiMk
@@ -541,14 +541,15 @@ function (f, data, glm.family, wt = rep(1, nrow(data)), strict = FALSE,
     }
     moddata <- moddata[, -1]
     cnames <- gsub(":", ".", cnames)
-    moddata <- cbind(moddata, datalist[[1]])
-    colnames(moddata) <- c(cnames, resp.name)
-    newf <- paste("+", cnames, sep = "", collapse = "")
-    newf <- paste(resp.name, "~1", newf, sep = "", collapse = "")
-    newf <- formula(newf)
-    nv <- ncol(moddata) - 1
-    y <- moddata[, nv + 1]
-    x <- moddata[, 1:nv]
+    moddata <- moddata
+    colnames(moddata) <- c(cnames)
+   # newf <- paste("+", cnames, sep = "", collapse = "")
+   # newf <- paste(resp.name, "~1", newf, sep = "", collapse = "")
+   # newf <- formula(newf)
+   # n.col.y<- dim(datalist[[1]])[2]
+   # nv <- ncol(moddata) - n.col.y
+    y <- datalist[[1]]
+    x <- moddata
     bic.glm(x, y, glm.family, wt = wt, strict = FALSE, prior.param = prior.param, 
         OR = OR, maxCol = maxCol, OR.fix = OR.fix, nbest = nbest, 
         dispersion = dispersion, factor.type = factor.type, factor.prior.adjust = factor.prior.adjust, 
