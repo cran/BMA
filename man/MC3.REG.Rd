@@ -6,9 +6,9 @@
    composition (MC3).  
 }
 \usage{
-MC3.REG(all.y, all.x, num.its, M0.var= , M0.out= , outs.list= , outliers = TRUE,
-        PI=.1*(length(all.y) <50) + .02*(length(all.y) >= 50), 
-        K=7, nu= , lambda= , phi= )
+MC3.REG(all.y, all.x, num.its, M0.var= , M0.out= , outs.list= , 
+        outliers = TRUE, PI=.1*(length(all.y) <50) + 
+        .02*(length(all.y) >= 50),  K=7, nu= , lambda= , phi= )
 
 }
 \arguments{

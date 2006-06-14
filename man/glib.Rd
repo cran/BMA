@@ -22,8 +22,9 @@ glib(x, y, n = rep(1, nrow(x)), error = "poisson", link = "log",
      priormean = NULL, priorvar = NULL, nbest = 10, call = NULL, ...)
 
 glib(g, scale = 1, phi = c(1, 1.65, 5), psi = 1, nu = 0, 
-     glimest = TRUE, glimvar = FALSE, output.priorvar = F, post.bymodel = TRUE, 
-     output.postvar = FALSE, priormean = NULL, priorvar = NULL, call = NULL, ...)
+     glimest = TRUE, glimvar = FALSE, output.priorvar = F, 
+     post.bymodel = TRUE, output.postvar = FALSE, priormean = NULL, 
+     priorvar = NULL, call = NULL, ...)
 
 as.bic.glm( g, phi.index=1)
 }

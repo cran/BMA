@@ -1,18 +1,27 @@
-bic.glm                 Bayesian Model Averaging for generalized
-                        linear models.
-bic.surv                Bayesian Model Averaging for survival (cox) models.
-bicreg                  Bayesian Model Averaging for linear regression.
-glib                    Function to evaluate Bayes factors and account for model uncertainty in generalized linear models. 
-iBMA.glm			Iterated Bayesian Model Averaging variable selection for generalized linear models.
-iBMA.bicreg			Iterated Bayesian Model Averaging variable selection for linear models.
-iBMA.surv			Iterated Bayesian Model Averaging variable selection for survival models.
-
-imageplot               A function to create an image of models used
-                        in Bayesian model averaging
-MC3.REG                 Bayesian simultaneous variable selection and outlier identification
-orderplot			Function to plot status of iBMA iterations
+as.data.frame.mc3       Type conversion and indexing for mc3 object
+bic.glm                 Bayesian Model Averaging for generalized linear
+                        models.
+bic.surv                Bayesian Model Averaging for Survival models.
+bicreg                  Bayesian Model Averaging for linear regression
+                        models.
+For.MC3.REG             Helper function for MC3.REG
+glib                    Model uncertainty in generalized linear models
+                        using Bayes factors
+iBMA                    Iterated Bayesian Model Averaging variable
+                        selection for generalized linear models, linear
+                        models or survival models.
+imageplot.bma           Images of models used in Bayesian model
+                        averaging
+MC3.REG                 Bayesian simultaneous variable selection and
+                        outlier identification
+MC3.REG.choose          Helper function to MC3.REG
+MC3.REG.logpost         Helper function to MC3.REG
+orderplot               Orderplot of iBMA objects
+out.ltsreg              out.ltsreg
 plot.bicreg             Plots the posterior distributions of
-                        coefficients from a bicreg, bic.glm, bic.surv
-                        or glib object
+                        coefficients derived from Bayesian model
+                        averaging
 race                    Scottish Hill Racing data
-summary.bic             Summaries of Bayesian model averaging objects
+summary                 Summaries of Bayesian model averaging objects
+summary.iBMA.glm        Summaries of iterated Bayesian model averaging
+                        objects

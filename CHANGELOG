@@ -1,4 +1,11 @@
 
+CHANGES for BMA 3.03
+- fixed problem with imageplot colors
+
+- fixed overly long R statements in documentation
+
+- change in maintainer
+
 CHANGES for BMA 3.02
 - fixed problems in bic.glm that occurred when a two column response was specified for the binomial model, for example "cbind(y,n-y)~."
 

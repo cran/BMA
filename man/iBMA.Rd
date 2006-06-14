@@ -28,8 +28,9 @@ iBMA.surv(x, ...)
 }
 
 \usage{
-iBMA.glm(X, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30, nIter = 100, 
-         verbose = FALSE, sorted = FALSE, factor.type = TRUE, ...)
+iBMA.glm(X, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30, 
+         nIter = 100, verbose = FALSE, sorted = FALSE, 
+         factor.type = TRUE, ...)
 
 iBMA.glm(current_state, nIter = NULL, verbose = NULL, ...) 
 
@@ -37,8 +38,9 @@ iBMA.bicreg(X, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30,
             nIter = 100, verbose = FALSE, sorted = FALSE, ...)
 iBMA.bicreg(current_state, nIter = NULL, verbose = NULL, ...) 
 
-iBMA.surv(X, surv.t, cens, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30, 
-          nIter = 100, verbose = FALSE, sorted = FALSE, factor.type = TRUE, ...)
+iBMA.surv(X, surv.t, cens, wt = rep(1, nrow(X)), thresProbne0 = 5, 
+          maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
+          factor.type = TRUE, ...)
 iBMA.surv(current_state, nIter = NULL, verbose = NULL, ...) 
 }
 \arguments{
@@ -105,7 +107,9 @@ Ka Yee Yeung, Adrian Raftery
   
   It is possible to obtain degenerate results when using a large number of predictor variables in linear regression. This problem is much less common with logistic regression and survival analysis.
 }
-\seealso{ \code{\link{bic.glm}}, \code{\link{bicreg}}, \code{\link{bic.surv}}, \code{\link{summary.iBMA.bicreg}}, \code{\link{print.iBMA.bicreg}}, \code{\link{orderplot.iBMA.bicreg}}}
+\seealso{ \code{\link{bic.glm}}, \code{\link{bicreg}}, \code{\link{bic.surv}},   
+ 
+\code{\link{summary.iBMA.bicreg}}, \code{\link{print.iBMA.bicreg}}, \code{\link{orderplot.iBMA.bicreg}}}
 \examples{
 
 

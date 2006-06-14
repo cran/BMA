@@ -16,13 +16,13 @@ bic.glm(x, ...)
 
 bic.glm(x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE, 
     prior.param = c(rep(0.5, ncol(x))), OR = 20, maxCol = 30, OR.fix = 2, 
-    nbest = 150, dispersion = , factor.type = TRUE, factor.prior.adjust = FALSE, 
-    occam.window = TRUE, ...)
+    nbest = 150, dispersion = , factor.type = TRUE, 
+    factor.prior.adjust = FALSE, occam.window = TRUE, ...)
 
 bic.glm(f, data, glm.family, wt = rep(1, nrow(data)), strict = FALSE, 
     prior.param = c(rep(0.5, ncol(x))), OR = 20, maxCol = 30, OR.fix = 2, 
-    nbest = 150, dispersion = , factor.type = TRUE, factor.prior.adjust = FALSE, 
-        occam.window = TRUE, ...)
+    nbest = 150, dispersion = , factor.type = TRUE, 
+    factor.prior.adjust = FALSE, occam.window = TRUE, ...)
 }
 \arguments{
   \item{x}{a matrix or data.frame of independent variables.}
