@@ -696,7 +696,7 @@ glib.matrix <- glib.data.frame
 
 glib.bic.glm<- function (x, scale = 1, phi = 1, psi = 1, nu = 0, 
     glimest = TRUE, glimvar = FALSE, output.priorvar = FALSE, post.bymodel = TRUE, 
-    output.postvar = FALSE, priormean = NULL, priorvar = NULL, call = NUL, ...) 
+    output.postvar = FALSE, priormean = NULL, priorvar = NULL, call = NULL, ...) 
 {
     if (is.null(call)) 
         cl <- match.call()

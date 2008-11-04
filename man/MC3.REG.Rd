@@ -1,5 +1,7 @@
 \name{MC3.REG}
 \alias{MC3.REG}
+\alias{as.data.frame.mc3}
+\alias{[.mc3}
 \title{Bayesian simultaneous variable selection and outlier identification}
 \description{
   Performs Bayesian simultaneous variable selection and outlier identification (SVO) via Markov chain Monte Carlo model

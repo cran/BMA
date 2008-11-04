@@ -4,6 +4,7 @@
 
       double precision rt,rw,RSS,Subss 
       dimension rt(nd,nc),iw(nw),rw(nr),RSS(nret),Subss(nret)
+
 c ******************************************************************** *
 c Adaptation of Furnival and Wilson leaps and bounds algorithm, adapted
 c by Ian Painter, 2004. Modification consists of commenting out all
@@ -233,11 +234,11 @@ c                               backtrack
    31    go to 30 
    32 go to 23
 c                                output
-   33	curr=1  
+   33	icur=1  
       do 42 lb=1,ns 
       if(cl(lb).eq.zip) go to 42
 c                             decode labels 
-	sbs(curr)=cl(lb)
+	sbs(icur)=cl(lb)
       m=0 
       do 34 l=1,nv
       if(cl(lb).lt.co(l)) go to 34
@@ -249,11 +250,11 @@ c                             decode labels
 c    
 c      if(mod(lb-1,mb).eq.0.and.ib.eq.1) 
 c     1  call intpr("n variables = ",-1,m,1)
-c	call dblepr("regid = ",-1,sbs(curr),1)
+c	call dblepr("regid = ",-1,sbs(icur),1)
 c	call intpr("subset = ",-1,ind,m)
       call crit(rs,rm(lb),sq(ky),sig,df,pen,it,ib,m,rsret)
-	rss(curr)=rsret
-	curr=curr+1
+	rss(icur)=rsret
+	icur=icur+1
       call copy(xn,rr,ind,ind,m+1,0,m+1,nd,sc,cn,zip,1) 
 c                           invert submatrix
       do 37 l=1,m 
