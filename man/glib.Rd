@@ -56,47 +56,77 @@ as.bic.glm( g, phi.index=1)
   \item{priorvar}{an optional matrix containing a user specified prior variance matrix, a (p+1) x (p+1) matrix. 
         Default has the prior variance estimated as in Raftery(1996). }
   \item{nbest}{ an integer giving the number of best models of each size to be returned by bic.glm if \code{models == NULL}}
-\item{call}{the call to the function}
-\item{phi.index}{an index to the value of phi to use when converting a \code{glib} object to a \code{bic.glm} object}
+  \item{call}{the call to the function}
+  \item{phi.index}{an index to the value of phi to use when converting a \code{glib} object to a \code{bic.glm} object}
 \item{...}{unused}
 }
-\details{Function to evaluate Bayes factors and account for model uncertainty in generalized linear models. 
-This also calculates posterior distributions from a set of reference proper priors. 
-
+\details{Function to evaluate Bayes factors and account for model
+  uncertainty in generalized linear models. 
+  This also calculates posterior distributions from a set of reference
+  proper priors. 
 \code{as.bic.glm} creates a 'bic.glm' object from a 'glib' object.
 }
 \value{
-\code{glib} returns an object of type \code{glib}, which is a list containing the following items:
-  \item{inputs }{a list echoing the inputs (x,y,n,error,link,models,phi,psi,nu) }
+  \code{glib} returns an object of type \code{glib}, which is a list
+  containing the following items:
+    \item{inputs }{a list echoing the inputs
+           (x,y,n,error,link,models,phi,psi,nu)}
   \item{bf }{a list containing the model comparison results:
-    \item{twologB10}{an \code{nmodel} x \code{nphi} matrix whose \code{[i,j]} element is 2logB10 for model i against the null model with phi=phi[j]. A Laplace approximation (one-step Newton) is used. }
-    \item{postprob}{ a matrix containing the posterior probabilities of the models for each value of phi. }
+    \describe{
+    \item{twologB10}{an \code{nmodel} x \code{nphi} matrix whose
+      \code{[i,j]} element is 2logB10 for model i against the null model
+      with \code{phi=phi[j]}. A Laplace approximation (one-step Newton)
+      is used. }
+    \item{postprob}{ a matrix containing the posterior probabilities
+                    of the models for each value of phi. }
     \item{deviance}{ a vector containing the deviances for the models. }
     \item{chi2}{ a vector containing the (DV0-DV1)/scale for the models }
-    \item{npar}{ a vector containing the number of parameters estimated for each model. }
-    \item{scale}{ the estimated or assigned scale used }}
-
-\item{posterior }{a list containing the Bayesian model mixing results: 
-    \item{prob0}{ an \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior probability that the 
-              parameter corresponding to the k-th column of x is zero, for the j-th value of phi. }
-    \item{mean}{ a \code{ncol(x)} x \code{nphi} matrix whose [k,j] element is the posterior mean of the parameter corresponding to the k-th column of x, for the j-th value of phi.}
-    \item{sd}{ as for mean, but for the posterior standard deviation. }
-        NOTE: Both mean and sd are CONDITIONAL on the parameter being non-zero. They do not include the intercept.  }
-\item{glim.est }{a list containing the GLIM estimates for the different models:
-    \item{coef}{An nmodel-list, each of whose elements is the coef value from  "glim" for one of the models.} 
-    \item{se}{ as coef, but contains standard errors.} 
-    \item{var}{ as coef, but contains variance matrices of the estimates.} } 
-\item{posterior.bymodel }{a list containing model-specific posterior means and sds:
-    \item{mean}{a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]xnphi} matrix, 
-            containing the posterior means of the npar[i] parameters of model i,  for each value of phi.} 
-    \item{sd}{ as for mean, but for posterior standard deviations.} 
-    \item{var}{ a list with \code{nmodel} elements, whose i'th element is a \code{npar[i]} x \code{npar[i]} x \code{nphi} array, 
-            containing the posterior variance matrix of the parameters of  model i for each value of phi.}}
-\item{prior }{a list containing the prior distributions: 
-    \item{mean}{ prior mean for the biggest model (this doesn't depend on phi)} 
-    \item{var}{ similar to corresponding member of posterior.bymodel.} }
+    \item{npar}{ a vector containing the number of parameters estimated
+      for each model. }
+    \item{scale}{ the estimated or assigned scale used }
+}}
+  \item{posterior }{a list containing the Bayesian model mixing results:
+    \describe{
+      \item{prob0}{ an \code{ncol(x)} x \code{nphi} matrix whose [k,j]
+        element is the posterior probability that the
+        parameter corresponding to the k-th column of x is zero,
+        for the j-th value of phi. }
+      \item{mean}{ a \code{ncol(x)} x \code{nphi} matrix whose [k,j]
+        element is the posterior mean of the parameter corresponding to
+        the k-th column of x, for the j-th value of phi.}
+    \item{sd}{ as for mean, but for the posterior standard deviation.
+      NOTE: Both mean and sd are CONDITIONAL on the parameter being
+      non-zero. They do not include the intercept. }
+  }}
+\item{glim.est }{a list containing the GLIM estimates for the different
+   models:
+   \describe{
+     \item{coef}{An nmodel-list, each of whose elements is the coef
+       value from "glim" for one of the models.}
+    \item{se}{ as coef, but contains standard errors.}
+    \item{var}{ as coef, but contains variance matrices of the
+      estimates.}
+    }}
+  \item{posterior.bymodel }{a list containing model-specific posterior
+    means and sds:
+     \describe{
+    \item{mean}{a list with \code{nmodel} elements, whose i'th element
+      is a \code{npar[i]xnphi} matrix, containing the posterior means of
+      the npar[i] parameters of model i,  for each value of phi.}
+    \item{sd}{ as for mean, but for posterior standard deviations.}
+    \item{var}{ a list with \code{nmodel} elements, whose i'th element
+      is a \code{npar[i]} x \code{npar[i]} x \code{nphi} array,
+      containing the posterior variance matrix of the parameters of
+      model i for each value of phi.}
+}}  \item{prior }{a list containing the prior distributions:
+ \describe{
+   \item{mean}{ prior mean for the biggest model
+     (this doesn't depend on phi)}
+    \item{var}{ similar to corresponding member of posterior.bymodel.}
+  }}
 \item{models }{ an array containing the models used.}
-\item{glm.out }{an object of type 'bic.glm' containing the results of any call to \code{bic.glm} }
+\item{glm.out }{an object of type 'bic.glm' containing the results of
+  any call to \code{bic.glm} }
 \item{call }{the call to the function}
 }
 \references{ Raftery, A.E. (1988). Approximate Bayes factors for generalized linear  models. Technical Report no. 121, Department of Statistics, University of Washington. 

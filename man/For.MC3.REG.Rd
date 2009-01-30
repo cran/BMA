@@ -9,28 +9,42 @@ For.MC3.REG(i, g, Ys, Xs, PI, K, nu, lambda, phi, outs.list)
 }
 \arguments{
   \item{i}{the current iteration number.}
-  \item{g}{a list containing the current state and the history of the Markov-Chain. This list is in the same form as the return value (see the 'value' section below):
-    \item{M0.var}{a logical vector specifying the variables in the current model.}
-        \item{M0.out}{a logical vector specifying the outliers in the current model.}
-    \item{M0.1}{a number representing the variables in the current model in binary form.}
-    \item{M0.2}{a number represnting the outliers in the current model in binary form.}
-    \item{outcnt}{the number of potential outliers} }
+  \item{g}{a list containing the current state and the history of the
+    Markov-Chain. This list is in the same form as the return value (see
+    the 'value' section below):
+    \describe{
+      \item{M0.var}{a logical vector specifying the variables in the
+	current model.}
+      \item{M0.out}{a logical vector specifying the outliers in the
+	current model.}
+      \item{M0.1}{a number representing the variables in the current
+	model in binary form.}
+    \item{M0.2}{a number represnting the outliers in the current model
+      in binary form.}
+    \item{outcnt}{the number of potential outliers} 
+    }}
   \item{Ys}{the vector of scaled responses.}
   \item{Xs}{the matrix of scaled covariates.}
   \item{PI}{a hyperparameter indicating the prior probability of an outlier.  
         The default values are 0.1 if the data set has less than 50 observations, 0.02 otherwise. }
   \item{K}{ a hyperparameter indicating the outlier inflation factor }
-  \item{nu}{ regression hyperparameter. Default value is 2.58 if r2 for the full model is less than 0.9 
+  \item{nu}{ regression hyperparameter.
+    Default value is 2.58 if r2 for the full model is less than 0.9 
              or 0.2 if r2 for the full model is greater than 0.9. }
-  \item{lambda}{ regression hyperparameter. Default value is 0.28 if r2 for the full model is less than 0.9 
+	   \item{lambda}{ regression hyperparameter.
+	     Default value is 0.28 if r2 for the full model is less than 0.9 
              or 0.1684 if r2 for the full model is greater than 0.9. }
-  \item{phi}{ regression hyperparameter. Default value is 2.85 if r2 for the full model is less than 0.9 
+	   \item{phi}{ regression hyperparameter.
+	     Default value is 2.85 if r2 for the full model is less than 0.9 
              or 9.2 if r2 for the full model is greater than 0.9.  }
- \item{outs.list}{ a vector of all potential outlier locations  (e.g. \code{c(10,12)} means the 10th and 12th points are potential outliers). If \code{NULL} and if \code{outliers} is \code{TRUE}, then potential outliers are estimated using the \code{\link{out.ltsreg}} function.}
- }
-}
+	   \item{outs.list}{ a vector of all potential outlier locations
+	     (e.g. \code{c(10,12)} means the 10th and 12th points are
+	     potential outliers).
+	     If \code{NULL} and if \code{outliers} is \code{TRUE},
+	     then potential outliers are estimated using the
+	     \code{\link{out.ltsreg}} function.}
+} 
 \details{ This function implements a single Metropolis-Hastings step, choosing a proposal model, calculating the Bayes Factor between the current model and proposal model, and updating the current model to the proposal model if the step results in an update. 
-  
 }
 \value{
   a list containing the current state and the history of the Markov-Chain, with components

@@ -78,8 +78,8 @@ The default values for \code{nu}, \code{lambda} and \code{phi} are recommended w
 If \code{PI} is set too high it is possible to generate sub models which are singular, at which point the function will crash.
 
 The implementation of this function is different from that used in the Splus function. In particular, variables which were global are now passed between functions.}
+
 \seealso{\code{\link{out.ltsreg}} \code{\link{as.data.frame.mc3}}}
-}
 \examples{
 # Example 1:   Scottish hill racing data.
 
@@ -99,7 +99,7 @@ y.crime.log<- log(UScrime$y)
 x.crime.log<- UScrime[,-ncol(UScrime)]
 x.crime.log[,-2]<- log(x.crime.log[,-2])
 crime.run1<-MC3.REG(y.crime.log, x.crime.log, num.its=2000, 
-                    rep(TRUE,15), outliers = FALSE)
+                     rep(TRUE,15), outliers = FALSE)
 crime.run1[1:25,]
 summary(crime.run1)
 

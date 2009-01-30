@@ -1,3 +1,7 @@
+CHANGES for BMA 3.04-09
+- fixed summary.bicreg to handle univariate case
+- fixed problems in help files
+  For.MC3.REG.Rd, MC3.REG.Rd, glib.Rd and race.Rd
 
 CHANGES for BMA 3.03
 - fixed problem with imageplot colors
