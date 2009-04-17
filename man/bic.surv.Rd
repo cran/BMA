@@ -111,15 +111,18 @@ imageplot.bma(test.bic.surv)
 data(pbc)
 x<- pbc[1:312,]
 surv.t<- x$time
-cens<- x$status
-x<- x[,-c(6,7,10,17,19)]
+cens<- as.numeric((x$status == 2))
+
+
+x<- x[,c("age", "albumin", "alk.phos", "ascites", "bili", "edema", "hepato", "platelet", "protime", "sex", "ast", "spiders", "stage", "trt", "copper")]
+
 
 
 x$bili<- log(x$bili)
 x$alb<- log(x$alb)
 x$protime<- log(x$protime)
 x$copper<- log(x$copper)
-x$sgot<- log(x$sgot)
+x$ast<- log(x$ast)
 
 
 test.bic.surv<- bic.surv(x, surv.t, cens, factor.type=FALSE, strict=FALSE)

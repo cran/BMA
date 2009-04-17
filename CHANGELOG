@@ -1,3 +1,7 @@
+
+CHANGES for BMA 3.10
+- changed on of the examples for bic.surv to match changes made to the pbc data set in the survival package
+
 CHANGES for BMA 3.04-09
 - fixed summary.bicreg to handle univariate case
 - fixed problems in help files
