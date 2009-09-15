@@ -10,7 +10,7 @@
 \alias{summary.iBMA.intermediate.surv}
 \alias{print.iBMA.intermediate.glm}
 \alias{print.iBMA.intermediate.bicreg}
-\alias{print.iBMA.intermediate.surv}\
+\alias{print.iBMA.intermediate.surv}
 \title{Summaries of iterated Bayesian model averaging objects}
 \description{
      \code{summary} and \code{print} methods for iterated Bayesian model averaging objects.

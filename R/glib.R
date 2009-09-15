@@ -116,7 +116,7 @@ function (x, y, n = rep(1, nrow(x)), error = "poisson", link = "log",
         eta <- cbind(rep(1, nrow(x)), x) %*% coef
         if (link == "identity") {
             mu <- eta
-            deta <- 1
+            deta <- rep(1,length(mu))
         }
         if (link == "log") {
             mu <- exp(eta)
@@ -143,7 +143,7 @@ function (x, y, n = rep(1, nrow(x)), error = "poisson", link = "log",
             deta <- -1/((1 - mu) * log(1 - mu))
         }
         if (error == "gaussian") 
-            v <- 1
+            v <- rep(1,length(mu))
         if (error == "poisson") 
             v <- mu
         if (error == "binomial") 

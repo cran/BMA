@@ -1,3 +1,9 @@
+CHANGES for BMA 3.12
+- error in iBMA.Rd (help file)
+
+CHANGES for BMA 3.11
+- fixed imageplot.bma to handle case where there is only one best model
+- fixed glib.matrix to handle Gaussian, identity case
 
 CHANGES for BMA 3.10
 - changed on of the examples for bic.surv to match changes made to the pbc data set in the survival package
