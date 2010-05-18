@@ -71,7 +71,7 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
         a$r2 <- pmin(pmax(0, a$r2), 0.999)
         x.lm <- cbind.data.frame(y = y, as.data.frame(x[, a$which[2, 
             , drop = FALSE]]), w = wt)
-        lm.fix <- lm(y ~ . - wt, weights = wt, data = x.lm)
+        lm.fix <- lm(y ~ . - w, weights = wt, data = x.lm)
         r2.fix <- summary(lm.fix)$r.sq
         N <- ncol(x)
         magic <- N * log(1 - a$r2[2]) - N * log(1 - r2.fix)

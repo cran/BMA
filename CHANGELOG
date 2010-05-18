@@ -1,3 +1,5 @@
+CHANGES for BMA 3.13
+- error in bicreg.R (reported by Kenneth Lo)
 CHANGES for BMA 3.12
 - error in iBMA.Rd (help file)
 
