@@ -1,5 +1,9 @@
+CHANGES for BMA 3.14
+- added drop = FALSE in bic.glm.R (reported by Hana Sevcikova)
+
 CHANGES for BMA 3.13
 - error in bicreg.R (reported by Kenneth Lo)
+
 CHANGES for BMA 3.12
 - error in iBMA.Rd (help file)
 

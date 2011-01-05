@@ -539,7 +539,7 @@ function (f, data, glm.family, wt = rep(1, nrow(data)), strict = FALSE,
             cnames <- c(cnames, colnames(mm)[sel])
         }
     }
-    moddata <- moddata[, -1]
+    moddata <- moddata[, -1, drop = FALSE]
     cnames <- gsub(":", ".", cnames)
     moddata <- moddata
     colnames(moddata) <- c(cnames)
