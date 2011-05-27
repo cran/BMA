@@ -23,7 +23,11 @@ sortX<- function(surv.t, cens, X, wt)
         scp<- formula(paste("~", paste(colnames(X), sep = "", collapse = " + "))) 
         cox.out <- coxph(Surv(surv.t, cens) ~ 1, weights = wt, method = "breslow", iter.max = 30,data = nastyHack_____x.df) 
         addcox <- add1(cox.out, scope = scp , test = "Chisq", data = nastyHack_____x.df)
-        fitvec <- addcox$"Pr(Chi)"[-1]
+
+# CF changed 20110527 for R 2.14.0 compatibility
+#       fitvec <- addcox$"Pr(Chi)"[-1]
+        fitvec <- addcox[-1, grep("^P.*Chi",names(addcox))]
+        
         initial.order<- order(fitvec,decreasing = FALSE)
         sortedX<- X[, initial.order]
         

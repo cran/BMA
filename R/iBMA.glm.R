@@ -29,7 +29,11 @@ iBMA.glm.data.frame<- function(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, glm
         scp<- formula(paste("~", paste(colnames(X), sep = "", collapse = " + ")))
         
         addglm <- add1(glm.out, scope = scp , test = "Chisq", data = nastyHack_____x.df)
-        fitvec <- addglm$"Pr(Chi)"[-1]
+
+# CF: changed 20110527 for R 2.14.0 compatibility
+#       fitvec <- addglm$"Pr(Chi)"[-1]
+        fitvec <- addglm[-1, grep("^P.*Chi",names(addglm))]
+        
         initial.order<- order(fitvec,decreasing = FALSE)
         sortedX<- X[, initial.order]
         
