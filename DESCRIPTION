@@ -1,6 +1,6 @@
 Package: BMA
-Version: 3.14.1
-Date: 2011-05-27
+Version: 3.15
+Date: 2012-01-27
 Title: Bayesian Model Averaging
 Author: Adrian Raftery <raftery@stat.washington.edu>, Jennifer Hoeting,
         Chris Volinsky, Ian Painter, Ka Yee Yeung
@@ -14,5 +14,5 @@ License: GPL (>= 2)
 URL: http://www.r-project.org,
         http://www.research.att.com/~volinsky/bma.html
 Repository: CRAN
-Date/Publication: 2011-05-28 15:24:31
-Packaged: 2011-05-27 17:31:53 UTC; fraley
+Date/Publication: 2012-02-11 06:28:09
+Packaged: 2012-02-10 20:57:43 UTC; fraley

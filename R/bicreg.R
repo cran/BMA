@@ -1,48 +1,38 @@
-library("leaps")
-
-bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, drop.factor.levels=TRUE, nbest = 10)
+bicreg <-
+function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, 
+    maxCol = 31, drop.factor.levels = TRUE, nbest = 10) 
 {
-
-
-
     dropcols <- function(x, y, wt, maxCols = 31) {
         x1.ldf <- data.frame(x, y = y)
-        temp.wt<- wt
-               
-        lm.out <- lm(y ~ . , data = x1.ldf, weights = temp.wt)
-        form.vars<- all.vars(formula(lm.out))[-1]
-        
+        temp.wt <- wt
+        lm.out <- lm(y ~ ., data = x1.ldf, weights = temp.wt)
+        form.vars <- all.vars(formula(lm.out))[-1]
         any.dropped <- FALSE
         dropped.which <- NULL
-        while (length(lm.out$coefficients) > maxCol) 
-        {
+        while (length(lm.out$coefficients) > maxCol) {
             any.dropped <- TRUE
-            
             droplm <- drop1(lm.out, test = "none")
             dropped <- row.names(droplm)[which.min(droplm$RSS[-1]) + 
                 1]
-            dropped.index<- match(dropped, form.vars)
-            form.vars<- form.vars[-dropped.index]
-            
-            formla <- formula(paste("y", "~", paste(form.vars, collapse=" + "),sep=" "))
+            dropped.index <- match(dropped, form.vars)
+            form.vars <- form.vars[-dropped.index]
+            formla <- formula(paste("y", "~", paste(form.vars, 
+                collapse = " + "), sep = " "))
             lm.out <- lm(formla, data = x1.ldf, weights = temp.wt)
             dropped.which <- c(dropped.which, dropped)
         }
-        
         new.var.names <- names(lm.out$coefficients)
-        return(list(mm = model.matrix(lm.out)[, -1,drop=FALSE], any.dropped = any.dropped, 
-            dropped = dropped.which, var.names = new.var.names))
+        return(list(mm = model.matrix(lm.out)[, -1, drop = FALSE], 
+            any.dropped = any.dropped, dropped = dropped.which, 
+            var.names = new.var.names))
     }
-
-
-
     cl <- match.call()
     x <- data.frame(x)
     if (is.null(dimnames(x))) 
         dimnames(x) <- list(NULL, paste("X", 1:ncol(x), sep = ""))
     y <- as.numeric(y)
     options(contrasts = c("contr.treatment", "contr.treatment"))
-    xnames <- dimnames(x)[[2]]
+    xnames <- input.names <- dimnames(x)[[2]]
     x2 <- na.omit(data.frame(x))
     used <- match(row.names(data.frame(x)), row.names(x2))
     omitted <- seq(nrow(x))[is.na(used)]
@@ -60,14 +50,14 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
     xx <- dropcols(x, y, wt, maxCol)
     xnames <- xx$var.names[-1]
     x <- xx$mm
-
     reduced <- xx$any.dropped
     dropped <- NULL
     if (reduced) 
         dropped <- xx$dropped
     nvar <- length(x[1, ])
     if (nvar > 2) {
-        a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]], strictly.compatible = FALSE, nbest=nbest)
+        a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]], 
+            strictly.compatible = FALSE, nbest = nbest)
         a$r2 <- pmin(pmax(0, a$r2), 0.999)
         x.lm <- cbind.data.frame(y = y, as.data.frame(x[, a$which[2, 
             , drop = FALSE]]), w = wt)
@@ -90,7 +80,8 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
         nmod <- switch(ncol(x), 2, 4)
         bic <- label <- rep(0, nmod)
         model.fits <- as.list(rep(0, nmod))
-        which <- matrix(c(FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE), nmod, nmod/2)
+        which <- matrix(c(FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, 
+            TRUE, TRUE), nmod, nmod/2)
         size <- c(1, 2, 2, 3)[1:nmod]
         sep <- if (all(nchar(dimnames(x)[[2]]) == 1)) 
             ""
@@ -111,6 +102,7 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
         }
     }
     n <- length(y)
+    if ((1-r2/100) <= 0) stop("a model is perfectly correlated with the response")
     bic <- n * log(1 - r2/100) + (size - 1) * log(n)
     occam <- bic - min(bic) < 2 * log(OR)
     r2 <- r2[occam]
@@ -118,12 +110,9 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
     label <- label[occam]
     which <- which[occam, , drop = FALSE]
     bic <- bic[occam]
-#    postprob <- exp(-0.5 * bic)/sum(exp(-0.5 * bic))
-
-     mbic<- bic - max(bic)
-     postprob <- exp(-0.5 * mbic)/sum(exp(-0.5 * mbic))
-     postprob[is.na(postprob)] <- 1
-
+    mbic <- bic - max(bic)
+    postprob <- exp(-0.5 * mbic)/sum(exp(-0.5 * mbic))
+    postprob[is.na(postprob)] <- 1
     order.bic <- order(bic, size, label)
     r2 <- r2[order.bic]
     size <- size[order.bic]
@@ -197,34 +186,29 @@ bicreg<- function(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol 
             }
         }
     }
-    dimnames(which) <- list(NULL, dimnames(x)[[2]])
-    dimnames(EbiMk) <- dimnames(sebiMk) <- list(NULL, c("Int", 
-        dimnames(x)[[2]]))
+    dimnames(which) <- list(NULL, colnames(x))
+    dimnames(EbiMk) <- dimnames(sebiMk) <- list(NULL, c("(Intercept)", 
+        colnames(x)))
+
+#   postmean <- Ebi
+    postmean <- apply( postprob * EbiMk, 2, sum)
+
+    fittedValues <- function(coef,x) cbind(1,x) %*% coef
+
+    residualVariance <- function(coef,x,y) 
+               sum((y - fittedValues(coef,x))^2)/(length(y) - length(coef))
+
+    resvar <- apply(EbiMk,1, residualVariance, x = x, y = y)
+
     result <- list(postprob = postprob, namesx = xnames, label = label, 
         r2 = r2, bic = bic, size = (size - 1), which = which, 
-        probne0 = c(probne0), postmean = Ebi, postsd = SDbi, 
-        condpostmean = CEbi, condpostsd = CSDbi, ols = EbiMk, mle = EbiMk, 
-        se = sebiMk, reduced = reduced, dropped = dropped, call = cl, 
-        n.models = length(postprob), n.vars = length(probne0))
+        probne0 = c(probne0), postmean = postmean, residvar = resvar,
+        postsd = SDbi, 
+        condpostmean = CEbi, condpostsd = CSDbi, ols = EbiMk, 
+        mle = EbiMk, se = sebiMk, reduced = reduced, dropped = dropped, 
+        input.names = input.names,
+        call = cl, n.models = length(postprob), n.vars = length(probne0))
     class(result) <- "bicreg"
     result
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

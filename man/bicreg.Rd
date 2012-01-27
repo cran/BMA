@@ -43,6 +43,7 @@ An object of class \code{bicreg} is a list containing at least the following com
   \item{se}{matrix with one row per model and one column per variable giving the standard error of each coefficient for each model}
   \item{reduced}{a logical indicating whether any variables were dropped before model averaging}
   \item{dropped}{a vector containing the names of those variables dropped before model averaging}
+  \item{residvar}{residual variance for each model}
   \item{call}{the matched call that created the bicreg object}
 }
 \references{

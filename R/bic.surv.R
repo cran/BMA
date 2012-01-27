@@ -1,6 +1,3 @@
-
-library("survival")
-
 "bic.surv" <-
 function (x, ...) 
 UseMethod("bic.surv")
@@ -213,6 +210,8 @@ function (x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30,
             x <- leaps.x <- mmm
         }
     }
+
+
     xx <- data.frame()
     xx <- dropcols(leaps.x, surv.t, cens, maxCol)
     var.names <- xx$var.names
@@ -235,6 +234,7 @@ function (x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30,
     xnames <- names(x)
     names(leaps.x) <- var.names
     x.coxph <- data.frame(surv.t = surv.t, cens = cens, leaps.x)
+    if (!exists("coxph")) library("survival")
     cox.out <- coxph(Surv(surv.t, cens) ~ ., data = x.coxph, 
         method = "breslow")
     x.coxph.fac <- data.frame(surv.t = surv.t, cens = cens, x)
@@ -556,6 +556,7 @@ function (x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30,
             designx.levels[i] <- sum(designx[1:i] == designx[i]) + 
                 1
         x.coxph <- data.frame(mm[, -1], surv.t = surv.t, cens = cens)
+        if (!exists("coxph")) library("survival")
         cox.out <- coxph(Surv(surv.t, cens) ~ ., data = x.coxph, 
             method = "breslow", iter.max = 30)
         while (length(cox.out$coefficients) > maxCol) {
@@ -630,6 +631,7 @@ function (x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30,
         names(mmm) <- dimnames(mm)[[2]]
         output.names <- names(mmm)
         x.coxph <- data.frame(surv.t = surv.t, cens = cens, x)
+        if (!exists("coxph")) library("survival")
         cox.out <- coxph(Surv(surv.t, cens) ~ ., data = x.coxph, 
             method = "breslow")
         cox.assign <- cox.out$assign
@@ -693,6 +695,7 @@ function (x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30,
     xnames <- names(x)
     names(leaps.x) <- var.names
     x.coxph <- data.frame(surv.t = surv.t, cens = cens, leaps.x)
+    if (!exists("coxph")) library("survival")
     cox.out <- coxph(Surv(surv.t, cens) ~ ., data = x.coxph, 
         method = "breslow")
     x.coxph.fac <- data.frame(surv.t = surv.t, cens = cens, x)

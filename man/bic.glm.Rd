@@ -41,11 +41,11 @@ bic.glm(f, data, glm.family, wt = rep(1, nrow(data)), strict = FALSE,
   \item{OR}{ a number specifying the maximum ratio for excluding models in Occam's window }
   \item{maxCol}{ a number specifying the maximum number of columns in design matrix (including intercept) to be kept. }
   \item{OR.fix}{width of the window which keeps models after the leaps approximation is done.  
-        Because the leaps and bounds gives only an approximation to BIC, there is a need to increase the window at 
-        this first "cut" so as to assure that no good models are deleted. 
-        The level of this cut is at \code{1/(OR^OR.fix)}; the default value for \code{OR.fix} is 2.}
+Because the leaps and bounds gives only an approximation to BIC, there is a need to increase the window at this first "cut" so as to assure that 
+no good models are deleted. 
+ The level of this cut is at \code{1/(OR^OR.fix)}; the default value for \code{OR.fix} is 2.}
   \item{nbest}{a number specifying the number of models of each size returned to bic.glm by the modified leaps algorithm.}
-  \item{dispersion}{a logical value specifying whether dispersion should be estimated or not. Default is \code{TRUE} unless glm.family is posson or binomial}
+  \item{dispersion}{a logical value specifying whether dispersion should be estimated or not. Default is \code{TRUE} unless glm.family is poisson or binomial}
   \item{factor.type}{a logical value specifying how variables of class "factor" are handled. 
         A factor variable with d levels is turned into (d-1) dummy variables using a treatment contrast.  
         If \code{factor.type = TRUE}, models will contain either all or none of these dummy variables.  
@@ -142,8 +142,6 @@ glm.out.TF<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial",
 summary(glm.out.TF)
 imageplot.bma(glm.out.TF)
 
-
-
 ### Gamma family 
 library(survival)
 data(veteran)
@@ -159,8 +157,6 @@ glm.out.va<- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
 summary(glm.out.va)
 imageplot.bma(glm.out.va)
 plot(glm.out.va)
-
-
 
 ### Poisson family
 ### Yates (teeth) data. 

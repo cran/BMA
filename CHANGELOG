@@ -1,3 +1,7 @@
+CHANGES for BMA 3.15
+- added predict functions for bicreg and bic.glm
+- explained use of OR.fix=Inf to avoid BIC approximation step in bic.glm
+
 CHANGES for BMA 3.14.1
 - changed handling of names for glm and cox output in iBMA for compatibility 
   with R 2.14.0
