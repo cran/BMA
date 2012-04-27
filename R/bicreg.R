@@ -89,20 +89,20 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
         for (k in 1:nmod) {
             if (k == 1) {
                 label[k] <- "NULL"
-                lm1 <- lm(y ~ 1, w = wt)
+                lm1 <- lm(y ~ 1, weights = wt)
             }
             else {
                 label[k] <- paste(dimnames(x)[[2]][which[k, ]], 
                   collapse = sep)
                 x.lm <- cbind.data.frame(y = y, x = x[, which[k, 
                   , drop = FALSE]], wt = wt)
-                lm1 <- lm(y ~ . - wt, data = x.lm, w = wt)
+                lm1 <- lm(y ~ . - wt, data = x.lm, weights = wt)
             }
             r2[k] <- summary(lm1)$r.sq * 100
         }
     }
     n <- length(y)
-    if ((1-r2/100) <= 0) stop("a model is perfectly correlated with the response")
+    if (any((1-r2/100) <= 0)) stop("a model is perfectly correlated with the response")
     bic <- n * log(1 - r2/100) + (size - 1) * log(n)
     occam <- bic - min(bic) < 2 * log(OR)
     r2 <- r2[occam]
@@ -151,7 +151,7 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
                 drop = FALSE], y, wt = wt), print.it = FALSE)$coef.table[[1]]
         }
         else model.fits[[k]] <- ls.print(lsfit(rep(1, length(y)), 
-            y, wt = wt, int = FALSE), print.it = FALSE)$coef.table[[1]]
+            y, wt = wt, intercept = FALSE), print.it = FALSE)$coef.table[[1]]
     }
     Ebi <- rep(0, (nvar + 1))
     SDbi <- rep(0, (nvar + 1))

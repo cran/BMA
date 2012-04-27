@@ -1,3 +1,5 @@
+- fixed (1-r2/100) check for correlation in bicreg
+
 CHANGES for BMA 3.15
 - added predict functions for bicreg and bic.glm
 - explained use of OR.fix=Inf to avoid BIC approximation step in bic.glm
