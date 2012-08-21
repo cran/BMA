@@ -444,7 +444,7 @@ function (x, y, n = rep(1, nrow(x)), error = "poisson", link = "log",
             scale <- switch(charmatch(scale, c("pearson", "deviance")), 
                 sum((y - yhat)^2/(var(yhat) * (nn - nvar))), 
                 newdev/(nn - nvar))
-        varmat <- backsolve(fit$qr[1:nvar, ], diag(nvar))
+        varmat <- backsolve(fit$qr[1:nvar,,drop=F], diag(nvar))
         varmat <- varmat %*% t(varmat)
         temp <- list(coef = coef, var = varmat * scale, deviance = deviance, 
             df = df, scale = scale, intercept = intercept)
