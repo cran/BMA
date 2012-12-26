@@ -95,6 +95,7 @@ Many thanks to Sanford Weisberg for making source code for leaps available.
 \seealso{ \code{\link{summary.bic.surv}}, \code{\link{print.bic.surv}}, \code{\link{plot.bic.surv}} }
 \examples{
 
+\dontrun{
 ## veteran data
 library(survival)
 data(veteran)
@@ -104,7 +105,7 @@ summary(test.bic.surv, conditional=FALSE, digits=2)
 plot(test.bic.surv)
 
 imageplot.bma(test.bic.surv)
-
+}
 
 
 ## pbc data
@@ -113,21 +114,18 @@ x<- pbc[1:312,]
 surv.t<- x$time
 cens<- as.numeric((x$status == 2))
 
-
 x<- x[,c("age", "albumin", "alk.phos", "ascites", "bili", "edema", "hepato", "platelet", "protime", "sex", "ast", "spiders", "stage", "trt", "copper")]
 
-
-
+\dontrun{
 x$bili<- log(x$bili)
 x$alb<- log(x$alb)
 x$protime<- log(x$protime)
 x$copper<- log(x$copper)
 x$ast<- log(x$ast)
 
-
 test.bic.surv<- bic.surv(x, surv.t, cens, factor.type=FALSE, strict=FALSE)
 summary(test.bic.surv)
-
+}
 
 }
 \keyword{regression}

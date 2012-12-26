@@ -81,6 +81,8 @@ The implementation of this function is different from that used in the Splus fun
 
 \seealso{\code{\link{out.ltsreg}} \code{\link{as.data.frame.mc3}}}
 \examples{
+
+\dontrun{
 # Example 1:   Scottish hill racing data.
 
 data(race)
@@ -90,6 +92,7 @@ races.run1<-MC3.REG(race[,1], race[,-1], num.its=20000, c(FALSE,TRUE),
                     lambda = .1684, phi = 9.2)
 races.run1
 summary(races.run1)
+}
 
 # Example 2: Crime data
 library(MASS)

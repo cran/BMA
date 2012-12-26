@@ -112,7 +112,7 @@ Ka Yee Yeung, Adrian Raftery
 \code{\link{summary.iBMA.bicreg}}, \code{\link{print.iBMA.bicreg}}, \code{\link{orderplot.iBMA.bicreg}}}
 \examples{
 
-
+\dontrun{
 ############ iBMA.glm
 library("MASS")
 data(birthwt)
@@ -134,10 +134,9 @@ x<- cbind(x, noise)
 iBMA.glm.out<- iBMA.glm(x, y,  glm.family="binomial", factor.type=FALSE, 
                         verbose = TRUE, thresProbne0 = 5 )
 summary(iBMA.glm.out)
+}
 
-
-
-
+\dontrun{
 ################## iBMA.surv
 library(survival)
 data(veteran)
@@ -162,6 +161,7 @@ test.iBMA.surv<- iBMA.surv(x = veteran_plus_noise, surv.t = surv.t, cens = cens,
 
 test.iBMA.surv
 summary(test.iBMA.surv)
+}
 
 
 ############ iBMA.bicreg ... degenerate example
@@ -187,10 +187,12 @@ iBMA.bicreg.crime<- iBMA.bicreg( x = UScrime_plus_noise, Y=y, thresProbne0 = 5,
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
 
+\dontrun{
 # run from current state until completion
 iBMA.bicreg.crime<- iBMA.bicreg( iBMA.bicreg.crime, nIter = 200)
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
+}
 
 cat("\n\n CAUTION: iBMA.bicreg can give degenerate results when")
 cat(" the number of predictor variables is large\n\n")

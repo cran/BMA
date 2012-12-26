@@ -120,6 +120,7 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
             any.dropped <- TRUE
             dropglm <- drop1(glm.out, test = "Chisq")
             dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
+            if (length(dropped) == 0) break
             x.df <- x.df[, -(dropped - 1)]
             designx.levels <- designx.levels[-dropped]
             designx <- designx[-dropped]
@@ -684,6 +685,7 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
             any.dropped <- TRUE
             dropglm <- drop1(glm.out, test = "Chisq")
             dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
+            if (length(dropped) == 0) break
             x.df <- x.df[, -(dropped - 1)]
             designx.levels <- designx.levels[-dropped]
             designx <- designx[-dropped]

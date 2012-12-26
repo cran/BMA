@@ -146,6 +146,7 @@ which is why these control parameters are F by default. }
 \seealso{ \code{\link{bic.glm}}, \code{\link{summary.glib}} }
 \examples{
 
+\dontrun{
 ### Finney data
 library(forward)
 data(vaso)
@@ -164,6 +165,7 @@ summary(finney.glib)
 
 finney.bic.glm<- as.bic.glm(finney.glib)
 plot(finney.bic.glm,mfrow=c(2,1))
+}
 
 ### Yates (teeth) data. 
 
@@ -184,6 +186,7 @@ glib.yates <- glib (x,y,n,models=models,glimvar=TRUE,output.priorvar=TRUE,
    output.postvar=TRUE) 
 summary(glib.yates)
 
+\dontrun{
 ### logistic regression with no models specified
 library("MASS")
 data(birthwt)
@@ -203,8 +206,9 @@ summary(glib.birthwt)
 glm.birthwt<- as.bic.glm(glib.birthwt)
 
 imageplot.bma(glm.birthwt)
-
 plot(glm.birthwt)
+}
+
 
 }
 \keyword{regression}

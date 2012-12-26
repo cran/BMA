@@ -25,6 +25,7 @@ generalized linear model from given data.
 \seealso{ \code{\link{bic.glm}}  }
 \examples{
 
+\dontrun{
 # Example 1 (Gaussian)
 
      library(MASS)
@@ -40,7 +41,9 @@ generalized linear model from given data.
      bic.glm.crimeF <- bic.glm(f, data = UScrime, glm.family = gaussian(),
                                factor.type = FALSE)
      predict(bic.glm.crimeF, newdata = UScrime)
+}
 
+\dontrun{
 # Example 2 (binomial)
 
      library(MASS)
@@ -64,7 +67,9 @@ generalized linear model from given data.
      bic.glm.bwF <- bic.glm(x, y, strict = FALSE, OR = 20,
                             glm.family="binomial",  factor.type=FALSE)
      predict( bic.glm.bwF, newdata = x)
+}
 
+\dontrun{
 # Example 3 (Gaussian)
 
      library(MASS)
@@ -79,7 +84,9 @@ generalized linear model from given data.
      bic.glm.anorexiaT <- bic.glm( anorexia.formula, data=anorexia,
                                  glm.family="gaussian", factor.type=TRUE)
      predict( bic.glm.anorexiaT, newdata=anorexia)
+}
 
+\dontrun{
 # Example 4 (Gamma)
 
      library(survival)
@@ -99,6 +106,7 @@ generalized linear model from given data.
      bic.glm.vaF <- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
                             factor.type=FALSE)
      predict( bic.glm.vaF, x)
+}
 
 # Example 5 (poisson - Yates teeth data)
 
@@ -115,6 +123,7 @@ generalized linear model from given data.
 
      predict( bic.glm.yatesF, x)
 
+\dontrun{
 # Example 6 (binomial - Venables and Ripley)
 
     ldose <- rep(0:5, 2)
@@ -133,6 +142,7 @@ generalized linear model from given data.
     bic.glm.budwormT <- bic.glm( budworm.formula, data=budworm,
                                  glm.family="binomial", factor.type=TRUE)
     predict(bic.glm.budwormT, newdata=budworm)
+}
 }
 \keyword{regression}
 \keyword{models}

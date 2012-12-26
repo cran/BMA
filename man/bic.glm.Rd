@@ -109,6 +109,7 @@ Many thanks to Sanford Weisberg for making source code for leaps available.
 \seealso{ \code{\link{summary.bic.glm}}, \code{\link{print.bic.glm}}, \code{\link{plot.bic.glm}}  }
 \examples{
 
+\dontrun{
 ### logistic regression
 library("MASS")
 data(birthwt)
@@ -141,7 +142,9 @@ glm.out.TF<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial",
     factor.type=FALSE)
 summary(glm.out.TF)
 imageplot.bma(glm.out.TF)
+}
 
+\dontrun{
 ### Gamma family 
 library(survival)
 data(veteran)
@@ -157,6 +160,7 @@ glm.out.va<- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
 summary(glm.out.va)
 imageplot.bma(glm.out.va)
 plot(glm.out.va)
+}
 
 ### Poisson family
 ### Yates (teeth) data. 
@@ -177,6 +181,7 @@ models<- rbind(
 glm.out.yates <- bic.glm(x,y,n, glm.family = poisson(), factor.type=FALSE) 
 summary(glm.out.yates)
 
+\dontrun{
 ### Gaussian
 library(MASS)
 data(UScrime)
@@ -186,8 +191,7 @@ glm.out.crime<- bic.glm(f, data = UScrime, glm.family = gaussian())
 summary(glm.out.crime)
 # note the problems with the estimation of the posterior standard deviation 
 # (compare with bicreg example)
-
-
+}
 
 }
 \keyword{regression}

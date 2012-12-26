@@ -48,8 +48,7 @@ x$ui <- as.factor(x$ui)
 glm.out1<- bic.glm(x, y, strict = TRUE, OR = 20, glm.family="binomial")
 imageplot.bma(glm.out1)
 
-
-
+\dontrun{
 # logistic regression using glib
 library("MASS")
 data(birthwt)
@@ -66,7 +65,7 @@ x$ui <- as.factor(x$ui)
 glib.birthwt<- glib(x,y, error="binomial", link = "logit")
 glm.birthwt<- as.bic.glm(glib.birthwt)
 imageplot.bma(glm.birthwt, order = "mds")
-
+}
 }
 \keyword{regression}
 \keyword{models}

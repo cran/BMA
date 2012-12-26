@@ -35,6 +35,7 @@ orderplot(x, ...)
 \seealso{ \code{\link{summary.iBMA.glm}}, \code{\link{iBMA}} }
 \examples{
 
+\dontrun{
 ############ iBMA.glm
 library("MASS")
 data(birthwt)
@@ -56,7 +57,7 @@ x<- cbind(x, noise)
 iBMA.glm.out<- iBMA.glm(x, y,  glm.family="binomial", factor.type=FALSE, 
                         verbose = TRUE, thresProbne0 = 5 )
 orderplot(iBMA.glm.out)
-
+}
 
 }
 \keyword{ hplot }
