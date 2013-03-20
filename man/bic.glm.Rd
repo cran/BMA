@@ -8,20 +8,25 @@
 Bayesian Model Averaging accounts for the model uncertainty inherent in the variable selection problem by averaging over the best models in the model class according to approximate posterior model probability.
 }
 
-\synopsis{
-bic.glm(x, ...)
-}
-
 \usage{
+bic.glm(x, ...)
 
-bic.glm(x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE, 
+\method{bic.glm}{matrix}(x, y, glm.family, wt = rep(1, nrow(x)),
+    strict = FALSE, 
     prior.param = c(rep(0.5, ncol(x))), OR = 20, maxCol = 30, OR.fix = 2, 
-    nbest = 150, dispersion = , factor.type = TRUE, 
-    factor.prior.adjust = FALSE, occam.window = TRUE, ...)
+    nbest = 150, dispersion = NULL, factor.type = TRUE, 
+    factor.prior.adjust = FALSE, occam.window = TRUE, call = NULL, ...)
 
-bic.glm(f, data, glm.family, wt = rep(1, nrow(data)), strict = FALSE, 
+\method{bic.glm}{data.frame}(x, y, glm.family, wt = rep(1, nrow(x)),
+    strict = FALSE, 
     prior.param = c(rep(0.5, ncol(x))), OR = 20, maxCol = 30, OR.fix = 2, 
-    nbest = 150, dispersion = , factor.type = TRUE, 
+    nbest = 150, dispersion = NULL, factor.type = TRUE, 
+    factor.prior.adjust = FALSE, occam.window = TRUE, call = NULL, ...)
+
+\method{bic.glm}{formula}(f, data, glm.family, wt = rep(1, nrow(data)),
+    strict = FALSE, 
+    prior.param = c(rep(0.5, ncol(x))), OR = 20, maxCol = 30, OR.fix = 2, 
+    nbest = 150, dispersion = NULL, factor.type = TRUE, 
     factor.prior.adjust = FALSE, occam.window = TRUE, ...)
 }
 \arguments{
@@ -60,6 +65,7 @@ no good models are deleted.
         This adjustment changes the individual priors on each dummy variable to \code{1-(1-pp[i])^(1/(k+1))}.}
   \item{occam.window}{a logical value specifying if Occam's window should be used. 
         If set to \code{FALSE} then all models selected by the modified leaps algorithm are returned.}
+      \item{call}{used internally}
 \item{...}{unused}
 }
 \details{

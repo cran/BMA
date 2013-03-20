@@ -56,8 +56,17 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
         dropped <- xx$dropped
     nvar <- length(x[1, ])
     if (nvar > 2) {
-        a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]], 
-            strictly.compatible = FALSE, nbest = nbest)
+#       a <- leaps(x, y, wt = wt, method = "r2", names = dimnames(x)[[2]], 
+#            strictly.compatible = FALSE, nbest = nbest)
+        a <- regsubsets(x, y, weights = wt, nbest = nbest,
+                        nvmax = ncol(x), method = "exhaustive",
+                        really.big = TRUE)
+        a    <- summary(a)
+        size <- apply(a$which,1,sum)
+        names(size) <- NULL
+        size <- c(1,size)
+        a$which <- a$which[,-1, drop=FALSE]
+        a$r2 <- a$rsq
         a$r2 <- pmin(pmax(0, a$r2), 0.999)
         x.lm <- cbind.data.frame(y = y, as.data.frame(x[, a$which[2, 
             , drop = FALSE]]), w = wt)
@@ -67,7 +76,6 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
         magic <- N * log(1 - a$r2[2]) - N * log(1 - r2.fix)
         a$r2 <- 1 - (1 - a$r2) * exp(-magic/N)
         r2 <- round(c(0, a$r2) * 100, 3)
-        size <- c(1, a$size)
         which <- rbind(rep(FALSE, ncol(x)), a$which)
         templabs <- t(matrix(rep(colnames(which), times = nrow(which)), 
             ncol = nrow(which)))
@@ -102,7 +110,8 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
         }
     }
     n <- length(y)
-    if (any((1-r2/100) <= 0)) stop("a model is perfectly correlated with the response")
+    if (any((1 - r2/100) <= 0)) 
+        stop("a model is perfectly correlated with the response")
     bic <- n * log(1 - r2/100) + (size - 1) * log(n)
     occam <- bic - min(bic) < 2 * log(OR)
     r2 <- r2[occam]
@@ -189,26 +198,18 @@ function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20,
     dimnames(which) <- list(NULL, colnames(x))
     dimnames(EbiMk) <- dimnames(sebiMk) <- list(NULL, c("(Intercept)", 
         colnames(x)))
-
-#   postmean <- Ebi
-    postmean <- apply( postprob * EbiMk, 2, sum)
-
-    fittedValues <- function(coef,x) cbind(1,x) %*% coef
-
-    residualVariance <- function(coef,x,y) 
-               sum((y - fittedValues(coef,x))^2)/(length(y) - length(coef))
-
-    resvar <- apply(EbiMk,1, residualVariance, x = x, y = y)
-
+    postmean <- apply(postprob * EbiMk, 2, sum)
+    fittedValues <- function(coef, x) cbind(1, x) %*% coef
+    residualVariance <- function(coef, x, y) sum((y - fittedValues(coef, 
+        x))^2)/(length(y) - length(coef))
+    resvar <- apply(EbiMk, 1, residualVariance, x = x, y = y)
     result <- list(postprob = postprob, namesx = xnames, label = label, 
         r2 = r2, bic = bic, size = (size - 1), which = which, 
-        probne0 = c(probne0), postmean = postmean, residvar = resvar,
-        postsd = SDbi, 
-        condpostmean = CEbi, condpostsd = CSDbi, ols = EbiMk, 
-        mle = EbiMk, se = sebiMk, reduced = reduced, dropped = dropped, 
-        input.names = input.names,
-        call = cl, n.models = length(postprob), n.vars = length(probne0))
+        probne0 = c(probne0), postmean = postmean, residvar = resvar, 
+        postsd = SDbi, condpostmean = CEbi, condpostsd = CSDbi, 
+        ols = EbiMk, mle = EbiMk, se = sebiMk, reduced = reduced, 
+        dropped = dropped, input.names = input.names, call = cl, 
+        n.models = length(postprob), n.vars = length(probne0))
     class(result) <- "bicreg"
     result
 }
-

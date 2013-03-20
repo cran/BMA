@@ -11,9 +11,7 @@
 \description{
  This function displays a plot showing the selection and rejection of variables being considered in an iterated Bayesian model averaging variable selection procedure.
 }
-\synopsis{
-orderplot(x, ...)
-}
+
 \usage{
 orderplot(x, ...)
 

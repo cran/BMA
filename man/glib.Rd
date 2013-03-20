@@ -9,24 +9,31 @@
 \description{Function to evaluate Bayes factors and account for model uncertainty in generalized linear models. 
 }
 
-\synopsis{
-glib(x, ...)
-}
-
 \usage{
+glib(x, ...)
 
-glib(x, y, n = rep(1, nrow(x)), error = "poisson", link = "log", 
+\method{glib}{matrix}(x, y, n = rep(1, nrow(x)), error = "poisson",
+     link = "log", 
      scale = 1, models = NULL,  phi = c(1, 1.65, 5), psi = 1, nu = 0, 
      pmw = rep(1, nrow(models)), glimest = TRUE, glimvar = FALSE, 
      output.priorvar = FALSE, post.bymodel = TRUE, output.postvar = FALSE, 
-     priormean = NULL, priorvar = NULL, nbest = 10, call = NULL, ...)
+     priormean = NULL, priorvar = NULL, nbest = 150, call = NULL, ...)
 
-glib(g, scale = 1, phi = c(1, 1.65, 5), psi = 1, nu = 0, 
-     glimest = TRUE, glimvar = FALSE, output.priorvar = F, 
+\method{glib}{data.frame}(x, y, n = rep(1, nrow(x)), error = "poisson",
+     link = "log", 
+     scale = 1, models = NULL,  phi = c(1, 1.65, 5), psi = 1, nu = 0, 
+     pmw = rep(1, nrow(models)), glimest = TRUE, glimvar = FALSE, 
+     output.priorvar = FALSE, post.bymodel = TRUE, output.postvar = FALSE, 
+     priormean = NULL, priorvar = NULL, nbest = 150, call = NULL, ...)
+
+\method{glib}{bic.glm}(x, scale = 1, phi = 1, psi = 1, nu = 0, 
+     glimest = TRUE, glimvar = FALSE, output.priorvar = FALSE, 
      post.bymodel = TRUE, output.postvar = FALSE, priormean = NULL, 
      priorvar = NULL, call = NULL, ...)
 
-as.bic.glm( g, phi.index=1)
+as.bic.glm(g, ...)
+
+\method{as.bic.glm}{glib}( g, index.phi=1, ...)
 }
 \arguments{
   \item{x}{ an \code{n} x \code{p} matrix of independent variables  }
@@ -57,7 +64,7 @@ as.bic.glm( g, phi.index=1)
         Default has the prior variance estimated as in Raftery(1996). }
   \item{nbest}{ an integer giving the number of best models of each size to be returned by bic.glm if \code{models == NULL}}
   \item{call}{the call to the function}
-  \item{phi.index}{an index to the value of phi to use when converting a \code{glib} object to a \code{bic.glm} object}
+  \item{index.phi}{an index to the value of phi to use when converting a \code{glib} object to a \code{bic.glm} object}
 \item{...}{unused}
 }
 \details{Function to evaluate Bayes factors and account for model

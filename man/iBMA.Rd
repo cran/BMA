@@ -21,37 +21,56 @@
   is usually determined on the basis of the some measure of goodness of fit calculated univariately for each variable.
 }
 
-\synopsis{
+\usage{
 iBMA.glm(x, ...)
 iBMA.bicreg(x, ...)
 iBMA.surv(x, ...)
-}
 
-\usage{
-iBMA.glm(X, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30, 
-         nIter = 100, verbose = FALSE, sorted = FALSE, 
+\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
+       glm.family, maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
          factor.type = TRUE, ...)
 
-iBMA.glm(current_state, nIter = NULL, verbose = NULL, ...) 
+\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
+       glm.family, maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
+         factor.type = TRUE, ...)
 
-iBMA.bicreg(X, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, maxNvar = 30, 
-            nIter = 100, verbose = FALSE, sorted = FALSE, ...)
-iBMA.bicreg(current_state, nIter = NULL, verbose = NULL, ...) 
+\method{iBMA.glm}{iBMA.intermediate.glm}(x, nIter = NULL, verbose = NULL, ...) 
 
-iBMA.surv(X, surv.t, cens, wt = rep(1, nrow(X)), thresProbne0 = 5, 
+\method{iBMA.bicreg}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
+            maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, ...)
+
+\method{iBMA.bicreg}{data.frame}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
+            maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, ...)
+
+\method{iBMA.bicreg}{iBMA.intermediate.bicreg}(x, nIter = NULL,
+                          verbose = NULL, ...) 
+
+\method{iBMA.surv}{matrix}(x, surv.t, cens, wt = rep(1, nrow(X)),
+          thresProbne0 = 5, 
           maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
           factor.type = TRUE, ...)
-iBMA.surv(current_state, nIter = NULL, verbose = NULL, ...) 
+
+\method{iBMA.surv}{data.frame}(x, surv.t, cens, wt = rep(1, nrow(X)),
+          thresProbne0 = 5, 
+          maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
+          factor.type = TRUE, ...)
+
+\method{iBMA.surv}{iBMA.intermediate.surv}(x, nIter = NULL,verbose = NULL, ...) 
 }
 \arguments{
-  \item{X}{a matrix or data.frame of independent variables.}
+  \item{x}{a matrix or data.frame of independent variables,
+    or else an object of class \code{iBMA.glm.intermediate},
+    \code{iBMA.bicreg.intermediate} or \code{iBMA.surv.intermediate}
+     that contains the current state of an incomplete selection.}
   \item{Y}{a vector of values for the dependent variable.}
   \item{surv.t}{a vector of survival times.}
   \item{cens}{a vector of indicators of censoring (0=censored 1=uncensored)}
-  \item{current_state}{an object of class iBMA.glm.intermediate, iBMA.bicreg.intermediate or iBMA.surv.intermediate that contains the current state of an incomplete selection.}
   \item{wt}{an optional vector of weights to be used.}
   \item{thresProbne0}{ a number giving the probability threshold for including variables as a percent.}
-  \item{maxNvar}{ a number giving the maximum number of variables to be considered in a model. }  \item{nIter}{ a number giving the maximum number of iterations that should be run. }
+  \item{glm.family}{glm family.}
+  \item{maxNvar}{ a number giving the maximum number of variables to be
+considered in a model. }  
+\item{nIter}{ a number giving the maximum number of iterations that should be run. }
   \item{verbose}{ a logical value specifying if verbose output should be produced or not }
   \item{sorted}{ a logical value specifying if the variables have been sorted or not. If \code{FALSE} then \code{iBMA.glm} will sort the variables prior to running any iterations.}
   \item{factor.type}{  a logical value specifying how variables of class "factor"

@@ -5,20 +5,26 @@
 \alias{bic.surv.formula}
 \title{Bayesian Model Averaging for Survival models.}
 \description{
-Bayesian Model Averaging for Cox proportional hazards models for censored survival data. This accounts for the model uncertainty inherent in the variable selection problem by averaging over the best models in the model class according to approximate posterior model probability
-}
-
-\synopsis{
-bic.surv(x, ...)
+Bayesian Model Averaging for Cox proportional hazards models for
+censored survival data. This accounts for the model uncertainty inherent
+in the variable selection problem by averaging over the best models in
+the model class according to approximate posterior model probability.
 }
 
 \usage{
+bic.surv(x, ...)
 
-bic.surv(x, surv.t, cens, strict = FALSE, OR = 20, maxCol = 30, 
-     prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
-     factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
+\method{bic.surv}{matrix}(x, surv.t, cens, strict = FALSE, OR = 20,
+      maxCol = 30, prior.param = c(rep(0.5, ncol(x))), OR.fix = 2,
+      nbest = 150, factor.type = TRUE, factor.prior.adjust = FALSE,
+      call = NULL, ...)
 
-bic.surv(f, data, strict = FALSE, OR = 20, maxCol = 30, 
+\method{bic.surv}{data.frame}(x, surv.t, cens, strict = FALSE, OR = 20,
+      maxCol = 30, prior.param = c(rep(0.5, ncol(x))), OR.fix = 2,
+      nbest = 150, factor.type = TRUE, factor.prior.adjust = FALSE,
+      call = NULL, ...)
+
+\method{bic.surv}{formula}(f, data, strict = FALSE, OR = 20, maxCol = 30, 
      prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
      factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
 }
