@@ -1,3 +1,10 @@
+CHANGES for BMA 3.17
+bic.glm:
+- fixed the mechanism for dropping columns when there are more than maxCol
+  (reported by Patrick Ball)
+- changed documentation to say that maxCol does not include intercept
+ (it did not in the past but the documentation was wrong).
+
 CHANGES for BMA 3.16
 - replaced leaps() in bicreg() with regsubsets() to allow really.big = TRUE
 - removed deprecated \synopsis and updated man files accordingly
@@ -11,6 +18,7 @@ CHANGES for BMA 3.15.3.1
 
 CHANGES for BMA 3.15.3
 - added check for length(dropped) == 0 in bic.glm.data.frame and bic.glm.matrix
+  reported by Patrick Ball
 
 CHANGES for BMA 3.15.2
 - added drop = F to backsolve in glib.R (reported by Brian Ripley)

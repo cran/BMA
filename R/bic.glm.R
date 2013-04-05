@@ -119,8 +119,9 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
         while (length(glm.out$coefficients) > maxCol) {
             any.dropped <- TRUE
             dropglm <- drop1(glm.out, test = "Chisq")
-            dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
-            if (length(dropped) == 0) break
+#           dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
+            dropped <- which.max(dropglm$LRT[-1]) + 1
+            if (length(dropped) == 0) stop("dropped == 0")
             x.df <- x.df[, -(dropped - 1)]
             designx.levels <- designx.levels[-dropped]
             designx <- designx[-dropped]
@@ -238,9 +239,14 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     remaining <- xx$remaining.vars
     leaps.x <- xx$mm
     reduced <- xx$any.dropped
-    dropped <- NULL
-    if (reduced) 
-        dropped <- xx$dropped
+#   dropped <- NULL
+#   if (reduced) 
+#       dropped <- xx$dropped
+    dropped <- 0
+    if (reduced) {
+       dropped <- match(xx$dropped,varNames,nomatch=0)
+       varNames <- varNames[-dropped]
+    }
     nvar <- length(x[1, ])
     x <- x[, remaining, drop = FALSE]
     x <- data.frame(x)
@@ -457,7 +463,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     postmean <- as.vector(Ebi)
     varNames <- gsub("`","",varNames) # work around budwormEX problem
     colnames(EbiMk) <- names(postmean) <- c("(Intercept)", varNames)
-    names(probne0) <- if (factor.type) names.arg else varNames
+#   names(probne0) <- if (factor.type) names.arg else varNames
+    names(probne0) <- if (factor.type) names.arg[-dropped] else varNames
     result <- list(postprob = postprob, label = label, deviance = dev, 
         size = size, bic = bic, prior.param = prior.param, prior.model.weights = prior/prior.weight.denom, 
         family = famname, linkinv = linkinv, levels = LEVELS,
@@ -684,8 +691,9 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
         while (length(glm.out$coefficients) > maxCol) {
             any.dropped <- TRUE
             dropglm <- drop1(glm.out, test = "Chisq")
-            dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
-            if (length(dropped) == 0) break
+#           dropped <- which.max(dropglm$"Pr(Chi)"[-1]) + 1
+            dropped <- which.max(dropglm$LRT[-1]) + 1
+            if (length(dropped) == 0) stop("dropped == 0")
             x.df <- x.df[, -(dropped - 1)]
             designx.levels <- designx.levels[-dropped]
             designx <- designx[-dropped]
@@ -797,9 +805,15 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     remaining <- xx$remaining.vars
     leaps.x <- xx$mm
     reduced <- xx$any.dropped
-    dropped <- NULL
-    if (reduced) 
-        dropped <- xx$dropped
+#   dropped <- NULL
+#   if (reduced) 
+#       dropped <- xx$dropped
+    dropped <- 0
+    varNames <- var.names
+    if (reduced) {
+       dropped <- match(xx$dropped,varNames,nomatch=0)
+       varNames <- varNames[-dropped]
+    }
     nvar <- length(x[1, ])
     x <- x[, remaining, drop = FALSE]
     x <- data.frame(x)

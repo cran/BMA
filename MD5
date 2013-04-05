@@ -1,7 +1,7 @@
-1e731838f594f66830effff2a97f80ee *CHANGELOG
-a7f36aff5f457b417010d821d8045e5d *DESCRIPTION
+17535e5540b9189408faa877d606b0c3 *CHANGELOG
+bf7335ee1c92473ae7f4ae24b8913e78 *DESCRIPTION
 928c1f34f4a537d63c96dd078348883f *NAMESPACE
-b5d53f1804daec6c6b184a1df2b45eff *R/bic.glm.R
+2118fcaec0d6476472ee695ab10a0443 *R/bic.glm.R
 21ac1c3cd729abbd1991fd5d0b1dbf30 *R/bic.surv.R
 1b29d1a3ad707269cbb937a3eb5cc868 *R/bicreg.R
 397cd67538d3740c9c33dfca325ad847 *R/glib.R
@@ -22,7 +22,7 @@ c305b931a7a4ae86039ab6e33f5ba0ae *R/summary.bic.R
 8b086b054b03513c1f7698b6543dfffa *man/MC3.REG.Rd
 257ec29eb5a8b935319ac951002885df *man/MC3.REG.choose.Rd
 eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
-ce947be7c941bae4ed491e28e6d5b699 *man/bic.glm.Rd
+79e0f7998d66bf31df33f27345248b8a *man/bic.glm.Rd
 df3186aea1d4b26254f182d64aafe75f *man/bic.surv.Rd
 99c1a23c367c1d6f61535a3bdfd7f00c *man/bicreg.Rd
 9a7efa13f490b2a67a11336af5b549b7 *man/glib.Rd

@@ -44,7 +44,7 @@ bic.glm(x, ...)
         \code{FALSE} returns all models whose posterior model probability is within a factor of \code{1/OR} of that of the best model.}
   \item{prior.param}{a vector of values specifying the prior weights for each variable.}
   \item{OR}{ a number specifying the maximum ratio for excluding models in Occam's window }
-  \item{maxCol}{ a number specifying the maximum number of columns in design matrix (including intercept) to be kept. }
+  \item{maxCol}{ a number specifying the maximum number of columns in design matrix (excluding intercept) to be kept. }
   \item{OR.fix}{width of the window which keeps models after the leaps approximation is done.  
 Because the leaps and bounds gives only an approximation to BIC, there is a need to increase the window at this first "cut" so as to assure that 
 no good models are deleted. 
