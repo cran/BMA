@@ -26,34 +26,39 @@ iBMA.glm(x, ...)
 iBMA.bicreg(x, ...)
 iBMA.surv(x, ...)
 
-\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
-       glm.family, maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
-         factor.type = TRUE, ...)
+\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), 
+       thresProbne0 = 5, glm.family, maxNvar = 30, 
+       nIter = 100, verbose = FALSE, sorted = FALSE, 
+       factor.type = TRUE, ...)
 
-\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
-       glm.family, maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
-         factor.type = TRUE, ...)
+\method{iBMA.glm}{matrix}(x, Y, wt = rep(1, nrow(X)), 
+       thresProbne0 = 5, glm.family, maxNvar = 30, 
+       nIter = 100, verbose = FALSE, sorted = FALSE, 
+       factor.type = TRUE, ...)
 
-\method{iBMA.glm}{iBMA.intermediate.glm}(x, nIter = NULL, verbose = NULL, ...) 
+\method{iBMA.glm}{iBMA.intermediate.glm}(x, nIter = NULL, 
+        verbose = NULL, ...) 
 
-\method{iBMA.bicreg}{matrix}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
-            maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, ...)
+\method{iBMA.bicreg}{matrix}(x, Y, wt = rep(1, nrow(X)), 
+        thresProbne0 = 5, maxNvar = 30, nIter = 100, 
+        verbose = FALSE, sorted = FALSE, ...)
 
-\method{iBMA.bicreg}{data.frame}(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5,
-            maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, ...)
+\method{iBMA.bicreg}{data.frame}(x, Y, wt = rep(1, nrow(X)), 
+        thresProbne0 = 5, maxNvar = 30, nIter = 100, 
+        verbose = FALSE, sorted = FALSE, ...)
 
-\method{iBMA.bicreg}{iBMA.intermediate.bicreg}(x, nIter = NULL,
-                          verbose = NULL, ...) 
+\method{iBMA.bicreg}{iBMA.intermediate.bicreg}(x, 
+        nIter = NULL, verbose = NULL, ...) 
 
-\method{iBMA.surv}{matrix}(x, surv.t, cens, wt = rep(1, nrow(X)),
-          thresProbne0 = 5, 
-          maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
-          factor.type = TRUE, ...)
+\method{iBMA.surv}{matrix}(x, surv.t, cens, 
+        wt = rep(1, nrow(X)), thresProbne0 = 5, 
+        maxNvar = 30, nIter = 100, verbose = FALSE, 
+        sorted = FALSE, factor.type = TRUE, ...)
 
-\method{iBMA.surv}{data.frame}(x, surv.t, cens, wt = rep(1, nrow(X)),
-          thresProbne0 = 5, 
-          maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
-          factor.type = TRUE, ...)
+\method{iBMA.surv}{data.frame}(x, surv.t, cens, 
+        wt = rep(1, nrow(X)), thresProbne0 = 5, 
+        maxNvar = 30, nIter = 100, verbose = FALSE, 
+        sorted = FALSE, factor.type = TRUE, ...)
 
 \method{iBMA.surv}{iBMA.intermediate.surv}(x, nIter = NULL,verbose = NULL, ...) 
 }
@@ -114,10 +119,13 @@ If on any iteration there are no variables that have posterior probability less 
 
 }
 \references{Yeung, K.Y., Bumgarner, R.E. and Raftery, A.E. (2005). ` Bayesian Model Averaging: Development of an improved multi-class, gene selection and classification tool for microarray data.' Bioinformatics, 21(10), 2394-2402 }
+
 \author{
-Ka Yee Yeung, Adrian Raftery
-     raftery@AT@stat.washington.edu and Ian Painter
-     ian.painter@AT@gmail.com. }
+Ka Yee Yeung, \email{kayee@AT@u.washington.edu},
+Adrian Raftery \email{raftery@AT@stat.washington.edu},
+ Ian Painter \email{ian.painter@AT@gmail.com}
+}
+
 \note{ 
  The parameters \code{verbose} and \code{nIter} can be changed between sets of iterations. 
 
@@ -126,9 +134,16 @@ Ka Yee Yeung, Adrian Raftery
   
   It is possible to obtain degenerate results when using a large number of predictor variables in linear regression. This problem is much less common with logistic regression and survival analysis.
 }
-\seealso{ \code{\link{bic.glm}}, \code{\link{bicreg}}, \code{\link{bic.surv}},   
+
+\seealso{ 
+\code{\link{bic.glm}}, 
+\code{\link{bicreg}}, 
+\code{\link{bic.surv}},
+\code{\link{summary.iBMA.bicreg}}, 
+\code{\link{print.iBMA.bicreg}}, 
+\code{\link{orderplot.iBMA.bicreg}}
+}
  
-\code{\link{summary.iBMA.bicreg}}, \code{\link{print.iBMA.bicreg}}, \code{\link{orderplot.iBMA.bicreg}}}
 \examples{
 
 \dontrun{
@@ -150,8 +165,9 @@ noise<- matrix(rnorm(41*nrow(x)), ncol=41)
 colnames(noise)<- paste('noise', 1:41, sep='')
 x<- cbind(x, noise)
 
-iBMA.glm.out<- iBMA.glm(x, y,  glm.family="binomial", factor.type=FALSE, 
-                        verbose = TRUE, thresProbne0 = 5 )
+iBMA.glm.out<- iBMA.glm( x, y, glm.family="binomial", 
+                         factor.type=FALSE, verbose = TRUE, 
+                         thresProbne0 = 5 )
 summary(iBMA.glm.out)
 }
 
@@ -166,17 +182,20 @@ veteran$time<- NULL
 veteran$status<- NULL
 lvet<- nrow(veteran)
 invlogit<- function(x) exp(x)/(1+exp(x))
-# generate random noise, 34 uniform variables and 10 factors each with 4 levels
-X<- data.frame(matrix(runif(lvet*34), ncol=34), 
-               matrix(c("a","b","c","d","e","f")[(rbinom(10*lvet, 3, .5))+1], 
+# generate random noise, 34 uniform variables 
+# and 10 factors each with 4 levels
+X <- data.frame(matrix(runif(lvet*34), ncol=34), 
+               matrix(letters[1:6][(rbinom(10*lvet, 3, .5))+1], 
                ncol = 10))
-colnames(X)<- c(paste("u",1:34, sep=""),paste("C",1:10, sep=""))
+colnames(X) <- c(paste("u",1:34, sep=""),paste("C",1:10, sep=""))
 veteran_plus_noise<- cbind(veteran, X)
 
 
-test.iBMA.surv<- iBMA.surv(x = veteran_plus_noise, surv.t = surv.t, cens = cens, 
-                           thresProbne0 = 5, maxNvar = 30, factor.type = TRUE, 
-                           verbose = TRUE, nIter = 100)
+test.iBMA.surv <- iBMA.surv(x = veteran_plus_noise, 
+                            surv.t = surv.t, cens = cens, 
+                            thresProbne0 = 5, maxNvar = 30, 
+                            factor.type = TRUE, verbose = TRUE, 
+                            nIter = 100)
 
 test.iBMA.surv
 summary(test.iBMA.surv)
@@ -198,17 +217,17 @@ colnames(noise)<- paste('noise', 1:35, sep='')
 UScrime_plus_noise<- cbind(UScrime, noise)
 
 y<- UScrime_plus_noise$y
-UScrime_plus_noise$y<- NULL
+UScrime_plus_noise$y <- NULL
 
 # run 2 iterations and examine results
-iBMA.bicreg.crime<- iBMA.bicreg( x = UScrime_plus_noise, Y=y, thresProbne0 = 5, 
-                                 verbose = TRUE, maxNvar = 30, nIter = 2)
+iBMA.bicreg.crime <- iBMA.bicreg( x = UScrime_plus_noise, 
+ Y = y, thresProbne0 = 5, verbose = TRUE, maxNvar = 30, nIter = 2)
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
 
 \dontrun{
 # run from current state until completion
-iBMA.bicreg.crime<- iBMA.bicreg( iBMA.bicreg.crime, nIter = 200)
+iBMA.bicreg.crime <- iBMA.bicreg( iBMA.bicreg.crime, nIter = 200)
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
 }

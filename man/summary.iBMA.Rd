@@ -31,15 +31,30 @@
 }
 
 \arguments{
-  \item{object}{object of type iBMA.glm, iBMA.bicreg or iBMA.surv, iBMA.intermediate.glm, iBMA.intermediate.bicreg or iBMA.intermediate.surv. }
-  \item{x}{object of type iBMA.glm, iBMA.bicreg or iBMA.surv, iBMA.intermediate.glm, iBMA.intermediate.bicreg or iBMA.intermediate.surv. }
-  \item{...}{other parameters to be passed to \code{print.bic.lmg}, \code{print.bicreg} or \code{print.bic.surv} }
+  \item{object}{object of type \code{iBMA.glm}, \code{iBMA.bicreg},
+ \code{iBMA.surv}, \code{iBMA.intermediate.glm}, 
+ \code{iBMA.intermediate.bicreg} or \code{iBMA.intermediate.surv}.}
+  \item{x}{object of type \code{iBMA.glm}, \code{iBMA.bicreg} ,
+ \code{iBMA.surv}, \code{iBMA.intermediate.glm}, 
+ \code{iBMA.intermediate.bicreg} or \code{iBMA.intermediate.surv}.}
+  \item{...}{other parameters to be passed to \code{print.bic.lmg}, 
+            \code{print.bicreg} or \code{print.bic.surv}.}
 }
+
 \details{
-  These methods provide concise and summarized information about the variables that have been examined up to the last iteration. 
-  If the result is a final result then the methods also display the results of calling print or summary on the Bayesian model average object for the final set of variables.
+  These methods provide concise and summarized information about the variables that 
+  have been examined up to the last iteration. 
+  If the result is a final result then the methods also display the results of 
+  calling print or summary on the Bayesian model average object for the final 
+  set of variables.
 }
-\author{Ian Painter \email{ian.painter@AT@gmail.com}}
-\note{The summary function does not create a summary object (unlike \code{summary.lm} or \code{summary.glm}), instead it directly prints the summary. Note that no calculations are done to create the summary.}
+
+\author{Ian Painter \email{ian.painter@gmail.com}}
+
+\note{The summary function does not create a summary object 
+(unlike \code{summary.lm} or \code{summary.glm}). 
+Instead it directly prints the summary. 
+Note that no calculations are done to create the summary.}
+
 \keyword{print}
 

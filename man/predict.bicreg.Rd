@@ -47,7 +47,8 @@ the response resulting from a BMA linear model from given data.
 
 # Example 2 (Venables and Ripley)
 
-     gasPRbma <- bicreg( x = whiteside[,c("Insul", "Temp")], y = whiteside$Gas)
+     gasPRbma <- bicreg( x = whiteside[,c("Insul", "Temp")], 
+                         y = whiteside$Gas)
      predict( gasPRbma, newdata = whiteside)
 
 }

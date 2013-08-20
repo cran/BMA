@@ -284,7 +284,7 @@ MC3.REG.logpost<- function(Y, X, model.vect, p, i, K, nu, lambda, phi)
 
 out.ltsreg <- function(x,y,delta)  
 {
-   library(rrcov)
+   require(rrcov)
    abc<-ltsReg(x,y)$residuals
    (1:length(y))[abs(as.vector(abc)/mad(abc))>=delta]
 }

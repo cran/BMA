@@ -18,19 +18,24 @@
 }
 \usage{
 
-\method{summary}{bicreg}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
+\method{summary}{bicreg}(object, n.models = 5, 
+         digits = max(3, getOption("digits") - 3), 
          conditional = FALSE, display.dropped = FALSE, ...)
 
-\method{summary}{bic.glm}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
+\method{summary}{bic.glm}(object, n.models = 5, 
+         digits = max(3, getOption("digits") - 3), 
          conditional = FALSE, display.dropped = FALSE, ...)
 
-\method{summary}{bic.surv}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
+\method{summary}{bic.surv}(object, n.models = 5, 
+         digits = max(3, getOption("digits") - 3), 
          conditional = FALSE, display.dropped = FALSE, ...)
 
-\method{summary}{glib}(object, n.models = 5, digits = max(3, getOption("digits") - 3), 
+\method{summary}{glib}(object, n.models = 5, 
+         digits = max(3, getOption("digits") - 3), 
          conditional = FALSE, index.phi=1, ...) 
 
-\method{summary}{mc3}(object, n.models = 5, digits = max(3, getOption("digits") - 3), ...)
+\method{summary}{mc3}(object, n.models = 5, 
+         digits = max(3, getOption("digits") - 3), ...)
 
 \method{print}{bicreg}(x, digits = max(3, getOption("digits") - 3), ...)
 
@@ -72,7 +77,8 @@ x$ptl<- as.factor(x$ptl)
 x$ht <- as.factor(x$ht)
 x$ui <- as.factor(x$ui)
 
-glm.out1<- bic.glm(x, y, OR = 20, glm.family="binomial", factor.type=TRUE)
+glm.out1<- bic.glm(x, y, OR = 20, glm.family="binomial", 
+                   factor.type=TRUE)
 summary(glm.out1, conditional = TRUE)
 }
 \keyword{print}

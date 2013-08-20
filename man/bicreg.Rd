@@ -4,8 +4,8 @@
 \description{Bayesian Model Averaging accounts for the model uncertainty inherent in the variable selection problem by averaging over the best models in the model class according to approximate posterior model probability.
 }
 \usage{
-bicreg(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, maxCol = 31, 
-       drop.factor.levels = TRUE, nbest = 10)
+bicreg(x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, 
+       maxCol = 31, drop.factor.levels = TRUE, nbest = 10)
 }
 \arguments{
   \item{x}{ a matrix of independent variables }

@@ -14,15 +14,19 @@ iBMA.surv.data.frame<- function(x, surv.t, cens, wt = rep(1, nrow(X)), thresProb
    }
    
         
-   
+   utils::globalVariables("nastyHack_x.df")
+
 sortX<- function(surv.t, cens, X, wt)
    {
         fitvec<- rep(NA, times = ncol(X))
 
-        nastyHack_____x.df <<- data.frame(X)       
-        scp<- formula(paste("~", paste(colnames(X), sep = "", collapse = " + "))) 
-        cox.out <- coxph(Surv(surv.t, cens) ~ 1, weights = wt, method = "breslow", iter.max = 30,data = nastyHack_____x.df) 
-        addcox <- add1(cox.out, scope = scp , test = "Chisq", data = nastyHack_____x.df)
+        nastyHack_x.df <- data.frame(X)       
+        scp<- formula(paste("~", paste(colnames(X), sep = "", 
+collapse = " + "))) 
+        cox.out <- coxph(Surv(surv.t, cens) ~ 1, weights = wt, 
+          method = "breslow", iter.max = 30,data = nastyHack_x.df) 
+        addcox <- add1(cox.out, scope = scp , test = "Chisq", 
+data = nastyHack_x.df)
 
 # CF changed 20110527 for R 2.14.0 compatibility
 #       fitvec <- addcox$"Pr(Chi)"[-1]

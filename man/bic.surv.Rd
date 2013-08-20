@@ -14,19 +14,21 @@ the model class according to approximate posterior model probability.
 \usage{
 bic.surv(x, ...)
 
-\method{bic.surv}{matrix}(x, surv.t, cens, strict = FALSE, OR = 20,
-      maxCol = 30, prior.param = c(rep(0.5, ncol(x))), OR.fix = 2,
-      nbest = 150, factor.type = TRUE, factor.prior.adjust = FALSE,
-      call = NULL, ...)
+\method{bic.surv}{matrix}(x, surv.t, cens, strict = FALSE, 
+      OR = 20, maxCol = 30, prior.param = c(rep(0.5, ncol(x))), 
+      OR.fix = 2, nbest = 150, factor.type = TRUE, 
+      factor.prior.adjust = FALSE, call = NULL, ...)
 
-\method{bic.surv}{data.frame}(x, surv.t, cens, strict = FALSE, OR = 20,
-      maxCol = 30, prior.param = c(rep(0.5, ncol(x))), OR.fix = 2,
-      nbest = 150, factor.type = TRUE, factor.prior.adjust = FALSE,
-      call = NULL, ...)
+\method{bic.surv}{data.frame}(x, surv.t, cens, 
+      strict = FALSE, OR = 20, maxCol = 30, 
+      prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, 
+      nbest = 150, factor.type = TRUE, 
+      factor.prior.adjust = FALSE, call = NULL, ...)
 
-\method{bic.surv}{formula}(f, data, strict = FALSE, OR = 20, maxCol = 30, 
-     prior.param = c(rep(0.5, ncol(x))), OR.fix = 2, nbest = 150, 
-     factor.type = TRUE, factor.prior.adjust = FALSE, call = NULL, ...)
+\method{bic.surv}{formula}(f, data, strict = FALSE, 
+     OR = 20, maxCol = 30, prior.param = c(rep(0.5, ncol(x))), 
+     OR.fix = 2, nbest = 150, factor.type = TRUE, 
+     factor.prior.adjust = FALSE, call = NULL, ...)
 }
 
 \arguments{
@@ -51,9 +53,10 @@ bic.surv(x, ...)
         If \code{factor.type = TRUE}, models will contain either all or none of these dummy variables.  
         If \code{factor.type = FALSE}, models are free  to select the dummy variables independently.  
         In this case, factor.prior.adjust determines the prior on these variables.}
-  \item{factor.prior.adjust}{a logical value specifying if the prior distribution on dummy variables for factors 
-        should be adjusted when \code{factor.type=F}.
-        When \code{factor.prior.adjust=FALSE}, all dummy variables for variable i have prior equal to \code{prior.param[i]}.
+  \item{factor.prior.adjust}{a logical value specifying if the prior distribution on
+        dummy variables for factors should be adjusted when \code{factor.type=FALSE}.
+        When \code{factor.prior.adjust=FALSE}, all dummy variables for variable 
+ \code{i} have prior equal to \code{prior.param[i]}.
         Note that this makes the prior probability of the union of these variables much higher than \code{prior.param[i]}.  
         Setting \code{factor.prior.adjust=T} corrects for this so that the union of the dummies equals \code{prior.param[i]}
         (and hence the deletion of the factor has a prior of \code{1-prior.param[i]}).  
@@ -69,10 +72,13 @@ Bayesian Model Averaging accounts for the model uncertainty inherent in the vari
  \code{bic.surv} returns an object of class \code{bic.surv}
   
 The function \code{summary} is used to print a summary of the results. 
-The function \code{plot} is used to plot posterior distributions for the coefficients. 
-The function \code{imageplot} generates an image of the models which were averaged over.
+The function \code{plot} is used to plot posterior distributions for the 
+coefficients. 
+The function \code{imageplot} generates an image of the models which were 
+averaged over.
 
-An object of class \code{bic.glm} is a list containing at least the following components:
+An object of class \code{bic.glm} is a list containing at least the following 
+components:
 
   \item{postprob}{the posterior probabilities of the models selected}
   \item{label}{labels identifying the models selected}
@@ -90,15 +96,30 @@ An object of class \code{bic.glm} is a list containing at least the following co
   \item{dropped}{a vector containing the names of those variables dropped before model averaging}
   \item{call}{the matched call that created the bma.lm object}
 }
-\note{If more than \code{maxcol} variables are supplied, then bic.surv does stepwise elimination of variables until \code{maxcol} variables are reached.
-
+\note{If more than \code{maxcol} variables are supplied, then bic.surv does 
+stepwise elimination of variables until \code{maxcol} variables are reached.
 Many thanks to Sanford Weisberg for making source code for leaps available.
 }
-\references{ Volinsky, C.T., Madigan, D., Raftery, A.E. and Kronmal, R.A. (1997). "Bayesian Model Averaging in Proportional Hazard Models:  Assessing the Risk of a Stroke."  Applied Statistics 46: 433-448}
-\author{Chris Volinsky \email{volinsky@AT@research.att.com}, 
-        Adrian Raftery \email{raftery@AT@stat.washington.edu} and 
-        Ian Painter \email{ian.painter@AT@gmail.com}}
-\seealso{ \code{\link{summary.bic.surv}}, \code{\link{print.bic.surv}}, \code{\link{plot.bic.surv}} }
+
+\references{ 
+Volinsky, C.T., Madigan, D., Raftery, A.E. and Kronmal, R.A. (1997). 
+"Bayesian Model Averaging in Proportional Hazard Models:  
+Assessing the Risk of a Stroke."  Applied Statistics 46: 433-448
+}
+
+\author{
+Chris Volinsky 
+\email{volinsky@AT@research.att.com};
+Adrian Raftery 
+\email{raftery@AT@stat.washington.edu};
+Ian Painter 
+\email{ian.painter@AT@gmail.com}
+}
+
+\seealso{ \code{\link{summary.bic.surv}}, 
+          \code{\link{print.bic.surv}}, 
+          \code{\link{plot.bic.surv}} }
+
 \examples{
 
 \dontrun{
@@ -106,7 +127,8 @@ Many thanks to Sanford Weisberg for making source code for leaps available.
 library(survival)
 data(veteran)
 
-test.bic.surv<- bic.surv(Surv(time,status) ~ ., data = veteran, factor.type = TRUE)
+test.bic.surv<- bic.surv(Surv(time,status) ~ ., data = veteran, 
+                         factor.type = TRUE)
 summary(test.bic.surv, conditional=FALSE, digits=2)
 plot(test.bic.surv)
 
@@ -120,7 +142,9 @@ x<- pbc[1:312,]
 surv.t<- x$time
 cens<- as.numeric((x$status == 2))
 
-x<- x[,c("age", "albumin", "alk.phos", "ascites", "bili", "edema", "hepato", "platelet", "protime", "sex", "ast", "spiders", "stage", "trt", "copper")]
+x<- x[,c("age", "albumin", "alk.phos", "ascites", "bili", "edema", 
+         "hepato", "platelet", "protime", "sex", "ast", "spiders", 
+         "stage", "trt", "copper")]
 
 \dontrun{
 x$bili<- log(x$bili)
@@ -129,7 +153,8 @@ x$protime<- log(x$protime)
 x$copper<- log(x$copper)
 x$ast<- log(x$ast)
 
-test.bic.surv<- bic.surv(x, surv.t, cens, factor.type=FALSE, strict=FALSE)
+test.bic.surv<- bic.surv(x, surv.t, cens, 
+                         factor.type=FALSE, strict=FALSE)
 summary(test.bic.surv)
 }
 

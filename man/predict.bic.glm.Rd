@@ -31,14 +31,16 @@ generalized linear model from given data.
      library(MASS)
      data(UScrime)
 
-     f <- formula(log(y) ~  log(M)+So+log(Ed)+log(Po1)+log(Po2)+log(LF)+
-            log(M.F)+log(Pop)+log(NW)+log(U1)+log(U2)+log(GDP)+log(Ineq)+
-            log(Prob)+log(Time))
+     f <- formula(log(y) ~  log(M)+So+log(Ed)+log(Po1)+log(Po2)+
+            log(LF)+log(M.F)+log(Pop)+log(NW)+log(U1)+log(U2)+
+            log(GDP)+log(Ineq)+log(Prob)+log(Time))
 
-     bic.glm.crimeT <- bic.glm(f, data = UScrime, glm.family = gaussian())
+     bic.glm.crimeT <- bic.glm(f, data = UScrime, 
+                               glm.family = gaussian())
      predict(bic.glm.crimeT, newdata = UScrime)
 
-     bic.glm.crimeF <- bic.glm(f, data = UScrime, glm.family = gaussian(),
+     bic.glm.crimeF <- bic.glm(f, data = UScrime, 
+                               glm.family = gaussian(),
                                factor.type = FALSE)
      predict(bic.glm.crimeF, newdata = UScrime)
 }
@@ -61,11 +63,13 @@ generalized linear model from given data.
      x$ui <- as.factor(x$ui)
 
      bic.glm.bwT <- bic.glm(x, y, strict = FALSE, OR = 20,
-                            glm.family="binomial",  factor.type=TRUE)
+                            glm.family="binomial",  
+                            factor.type=TRUE)
      predict( bic.glm.bwT, newdata = x)
 
      bic.glm.bwF <- bic.glm(x, y, strict = FALSE, OR = 20,
-                            glm.family="binomial",  factor.type=FALSE)
+                            glm.family="binomial",  
+                            factor.type=FALSE)
      predict( bic.glm.bwF, newdata = x)
 }
 
@@ -75,14 +79,14 @@ generalized linear model from given data.
      library(MASS)
      data(anorexia)
 
-     anorexia.formula <- formula(Postwt ~ Prewt + Treat + offset(Prewt))
+     anorexia.formula <- formula(Postwt ~ Prewt+Treat+offset(Prewt))
 
      bic.glm.anorexiaF <- bic.glm( anorexia.formula, data=anorexia,
-                                glm.family="gaussian", factor.type=FALSE)
+                       glm.family="gaussian", factor.type=FALSE)
      predict( bic.glm.anorexiaF, newdata=anorexia)
 
      bic.glm.anorexiaT <- bic.glm( anorexia.formula, data=anorexia,
-                                 glm.family="gaussian", factor.type=TRUE)
+                           glm.family="gaussian", factor.type=TRUE)
      predict( bic.glm.anorexiaT, newdata=anorexia)
 }
 
@@ -99,11 +103,13 @@ generalized linear model from given data.
      x <- x[!sel,]
      surv.t <- surv.t[!sel]
 
-     bic.glm.vaT <- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
+     bic.glm.vaT <- bic.glm(x, y=surv.t, 
+                            glm.family=Gamma(link="inverse"),
                             factor.type=TRUE)
      predict( bic.glm.vaT, x)
 
-     bic.glm.vaF <- bic.glm(x, y=surv.t, glm.family=Gamma(link="inverse"),
+     bic.glm.vaF <- bic.glm(x, y=surv.t, 
+                            glm.family=Gamma(link="inverse"),
                             factor.type=FALSE)
      predict( bic.glm.vaF, x)
 }
@@ -136,11 +142,11 @@ generalized linear model from given data.
     budworm.formula <- formula(SF ~ sex*ldose)
 
     bic.glm.budwormF <- bic.glm( budworm.formula, data=budworm,
-                                 glm.family="binomial", factor.type=FALSE)
+                   glm.family="binomial", factor.type=FALSE)
     predict(bic.glm.budwormF, newdata=budworm)
 
     bic.glm.budwormT <- bic.glm( budworm.formula, data=budworm,
-                                 glm.family="binomial", factor.type=TRUE)
+                      glm.family="binomial", factor.type=TRUE)
     predict(bic.glm.budwormT, newdata=budworm)
 }
 }

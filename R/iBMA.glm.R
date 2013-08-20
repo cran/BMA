@@ -17,18 +17,21 @@ iBMA.glm.data.frame<- function(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, glm
    }
    
         
+
+  utils::globalVariables(c("nastyHack_glm.family", "nastyHack_x.df"))
    
   sortX<- function(Y,X, glm.family, wt)
    {
         fitvec<- rep(NA, times = ncol(X))
 
-        nastyHack_____glm.family <<- glm.family
-        nastyHack_____x.df <<- data.frame(X)
+        nastyHack_glm.family <- glm.family
+        nastyHack_x.df <- data.frame(X)
         
-        glm.out <- glm(Y ~ 1 , family = nastyHack_____glm.family, weights = wt, data = nastyHack_____x.df) 
+        glm.out <- glm(Y ~ 1 , family = nastyHack_glm.family, weights = wt, data = nastyHack_x.df) 
         scp<- formula(paste("~", paste(colnames(X), sep = "", collapse = " + ")))
         
-        addglm <- add1(glm.out, scope = scp , test = "Chisq", data = nastyHack_____x.df)
+        addglm <- add1(glm.out, scope = scp , test = "Chisq", 
+                       data = nastyHack_x.df)
 
 # CF: changed 20110527 for R 2.14.0 compatibility
 #       fitvec <- addglm$"Pr(Chi)"[-1]

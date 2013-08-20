@@ -12,24 +12,28 @@
 \usage{
 glib(x, ...)
 
-\method{glib}{matrix}(x, y, n = rep(1, nrow(x)), error = "poisson",
-     link = "log", 
-     scale = 1, models = NULL,  phi = c(1, 1.65, 5), psi = 1, nu = 0, 
-     pmw = rep(1, nrow(models)), glimest = TRUE, glimvar = FALSE, 
-     output.priorvar = FALSE, post.bymodel = TRUE, output.postvar = FALSE, 
-     priormean = NULL, priorvar = NULL, nbest = 150, call = NULL, ...)
+\method{glib}{matrix}(x, y, n = rep(1, nrow(x)), 
+     error = "poisson", link = "log", scale = 1, 
+     models = NULL, phi = c(1, 1.65, 5), psi = 1, 
+     nu = 0, pmw = rep(1, nrow(models)), glimest = TRUE, 
+     glimvar = FALSE, output.priorvar = FALSE, 
+     post.bymodel = TRUE, output.postvar = FALSE, 
+     priormean = NULL, priorvar = NULL, 
+     nbest = 150, call = NULL, ...)
 
-\method{glib}{data.frame}(x, y, n = rep(1, nrow(x)), error = "poisson",
-     link = "log", 
-     scale = 1, models = NULL,  phi = c(1, 1.65, 5), psi = 1, nu = 0, 
-     pmw = rep(1, nrow(models)), glimest = TRUE, glimvar = FALSE, 
-     output.priorvar = FALSE, post.bymodel = TRUE, output.postvar = FALSE, 
-     priormean = NULL, priorvar = NULL, nbest = 150, call = NULL, ...)
+\method{glib}{data.frame}(x, y, n = rep(1, nrow(x)), 
+     error = "poisson", link = "log", scale = 1, 
+     models = NULL,  phi = c(1, 1.65, 5), 
+     psi = 1, nu = 0, pmw = rep(1, nrow(models)), 
+     glimest = TRUE, glimvar = FALSE, output.priorvar = FALSE, 
+     post.bymodel = TRUE, output.postvar = FALSE, 
+     priormean = NULL, priorvar = NULL, 
+     nbest = 150, call = NULL, ...)
 
 \method{glib}{bic.glm}(x, scale = 1, phi = 1, psi = 1, nu = 0, 
      glimest = TRUE, glimvar = FALSE, output.priorvar = FALSE, 
-     post.bymodel = TRUE, output.postvar = FALSE, priormean = NULL, 
-     priorvar = NULL, call = NULL, ...)
+     post.bymodel = TRUE, output.postvar = FALSE, 
+     priormean = NULL, priorvar = NULL, call = NULL, ...)
 
 as.bic.glm(g, ...)
 
@@ -117,12 +121,12 @@ as.bic.glm(g, ...)
   \item{posterior.bymodel }{a list containing model-specific posterior
     means and sds:
      \describe{
-    \item{mean}{a list with \code{nmodel} elements, whose i'th element
+    \item{mean}{a list with \code{nmodel} elements, whose \code{i}th element
       is a \code{npar[i]xnphi} matrix, containing the posterior means of
-      the npar[i] parameters of model i,  for each value of phi.}
+      the npar[i] parameters of model \code{i},  for each value of phi.}
     \item{sd}{ as for mean, but for posterior standard deviations.}
-    \item{var}{ a list with \code{nmodel} elements, whose i'th element
-      is a \code{npar[i]} x \code{npar[i]} x \code{nphi} array,
+    \item{var}{ a list with \code{nmodel} elements, whose \code{i}th element
+      is a \code{npar[i]} by \code{npar[i]} by \code{nphi} array,
       containing the posterior variance matrix of the parameters of
       model i for each value of phi.}
 }}  \item{prior }{a list containing the prior distributions:
@@ -166,8 +170,9 @@ finney.models<- rbind(
     c(0, 1),
     c(1, 1))
 
-finney.glib <- glib (x,y,n, error="binomial", link="logit", models=finney.models, 
-   glimvar=TRUE, output.priorvar=TRUE, output.postvar=TRUE)
+finney.glib <- glib (x,y,n, error="binomial", link="logit", 
+                     models=finney.models, glimvar=TRUE, 
+                     output.priorvar=TRUE, output.postvar=TRUE)
 summary(finney.glib)
 
 finney.bic.glm<- as.bic.glm(finney.glib)
@@ -189,8 +194,8 @@ models<- rbind(
     c(1, 1, 0),
     c(1, 1, 1))
 
-glib.yates <- glib (x,y,n,models=models,glimvar=TRUE,output.priorvar=TRUE,
-   output.postvar=TRUE) 
+glib.yates <- glib ( x, y, n, models=models, glimvar=TRUE,
+                     output.priorvar=TRUE, output.postvar=TRUE) 
 summary(glib.yates)
 
 \dontrun{
