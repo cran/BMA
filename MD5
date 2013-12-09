@@ -1,9 +1,9 @@
-32b3acf3387ed7f2d76b696200f16c75 *ChangeLog
-98a2e0e24df3fd93781f370af9471777 *DESCRIPTION
+63c91df3896aeca712f86226ff8781eb *ChangeLog
+bddec357d9f33a2014f1147c4867bfde *DESCRIPTION
 928c1f34f4a537d63c96dd078348883f *NAMESPACE
-2118fcaec0d6476472ee695ab10a0443 *R/bic.glm.R
+5421a2b42c41f5214689b9d460c83c2d *R/bic.glm.R
 4a1d99cd18f5d10beb3379ab7743cf3e *R/bic.surv.R
-1b29d1a3ad707269cbb937a3eb5cc868 *R/bicreg.R
+3af4799821fdca3781e9a780d29dac17 *R/bicreg.R
 397cd67538d3740c9c33dfca325ad847 *R/glib.R
 79274308e825494bcc6b619626933f8d *R/iBMA.bicreg.R
 df758dd0a2c479a6ab0ba8109a26279a *R/iBMA.glm.R
@@ -24,7 +24,7 @@ c305b931a7a4ae86039ab6e33f5ba0ae *R/summary.bic.R
 eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
 d14abad4aedb13e1e6830f512b3a7970 *man/bic.glm.Rd
 bec57f8757839766c7bbbe865d93106a *man/bic.surv.Rd
-821bf6c16626fb5d80ba9b454e8da15b *man/bicreg.Rd
+4ad4d78b367676bf6c99a692e251e1ce *man/bicreg.Rd
 a754a9c4532d174b52f2bbb9324b6c5a *man/glib.Rd
 316d3d3bf4d443815c113f069623101f *man/iBMA.Rd
 a4fcdfec83e525eeaa4cc835bca6d8e4 *man/imageplot.Rd

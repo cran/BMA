@@ -1,15 +1,17 @@
+CHANGES for BMA 3.16.2.3
+- fixed names(probne0) in bic.glm.data.frame to work shen when dropped == 0
+- changed default nbest to 150 for bicreg [overlooked earlier]
+
 CHANGES for BMA 3.16.2.2
 - changed CHANGELOG to ChangeLog
 - utils::globalVariables for nastyhack
 
 CHANGES for BMA 3.16.2.1
-- updated CHANGELOG
 - added robustbase to requires to supply ltsReg for mc3
 - man out.lmsrg.Rd --> out.ltsreg.Rd
-- changed default nbest to 150 i for bicreg
 
 CHANGES for BMA 3.16.2
-- changed default nbest to 150
+- changed default nbest to 150 [in bic.glm and bic.surv]
 
 CHANGES for BMA 3.16.1
 bic.glm:

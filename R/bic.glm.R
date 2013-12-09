@@ -464,7 +464,10 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     varNames <- gsub("`","",varNames) # work around budwormEX problem
     colnames(EbiMk) <- names(postmean) <- c("(Intercept)", varNames)
 #   names(probne0) <- if (factor.type) names.arg else varNames
-    names(probne0) <- if (factor.type) names.arg[-dropped] else varNames
+    names(probne0) <- if (factor.type) {
+       if (!all(dropped ==0)) names.arg[-dropped] else names.arg
+     }
+    else varNames
     result <- list(postprob = postprob, label = label, deviance = dev, 
         size = size, bic = bic, prior.param = prior.param, prior.model.weights = prior/prior.weight.denom, 
         family = famname, linkinv = linkinv, levels = LEVELS,
@@ -1028,7 +1031,8 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     CEbi[1] <- Ebi[1]
     names(output.names) <- var.names
     result <- list(postprob = postprob, label = label, deviance = dev, 
-        size = size, bic = bic, prior.param = prior.param, prior.model.weights = prior/prior.weight.denom, 
+        size = size, bic = bic, prior.param = prior.param, prior.model.weights
+                   = prior/prior.weight.denom, 
         family = famname, linkinv = linkinv, 
         disp = disp, which = which, probne0 = c(probne0), 
         postmean = as.vector(Ebi), postsd = as.vector(SDbi), 

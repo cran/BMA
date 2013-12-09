@@ -1,6 +1,6 @@
 bicreg <-
 function (x, y, wt = rep(1, length(y)), strict = FALSE, OR = 20, 
-    maxCol = 31, drop.factor.levels = TRUE, nbest = 10) 
+    maxCol = 31, drop.factor.levels = TRUE, nbest = 150) 
 {
     dropcols <- function(x, y, wt, maxCols = 31) {
         x1.ldf <- data.frame(x, y = y)
