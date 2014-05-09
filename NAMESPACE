@@ -1,6 +1,6 @@
 useDynLib(BMA)
 
-import(survival, leaps, robustbase)
+import(survival, leaps, robustbase, inline)
 
 export(bicreg)
 

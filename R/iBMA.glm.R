@@ -1,129 +1,123 @@
-
-
-
-
-
-
 iBMA.glm<-function(x, ...)
 UseMethod("iBMA.glm")
 
-iBMA.glm.data.frame<- function(x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, glm.family, maxNvar = 30, nIter=100, verbose = FALSE, sorted = FALSE, factor.type = TRUE, ...) 
+iBMA.glm.data.frame <-
+function (x, Y, wt = rep(1, nrow(X)), thresProbne0 = 5, glm.family, 
+    maxNvar = 30, nIter = 100, verbose = FALSE, sorted = FALSE, 
+    factor.type = TRUE, ...) 
 {
+    printCGen <- function(printYN) {
+        printYN <- printYN
+        return(function(x) if (printYN) cat(paste(paste(x, sep = "", 
+            collapse = " "), "\n", sep = "")))
+    }
 
-   printCGen<- function(printYN)
-   {
-        printYN<- printYN
-        return(function(x) if (printYN) cat(paste(paste(x,sep="", collapse = " "),"\n", sep="")))
-   }
-   
-        
+# CF: solution to namespace lock  https://gist.github.com/wch/3280369
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    
+inc <- '
+/* This is taken from envir.c in the R 2.15.1 source
+https://github.com/SurajGupta/r-source/blob/master/src/main/envir.c
+*/
+#define FRAME_LOCK_MASK (1<<14)
+#define FRAME_IS_LOCKED(e) (ENVFLAGS(e) & FRAME_LOCK_MASK)
+#define UNLOCK_FRAME(e) SET_ENVFLAGS(e, ENVFLAGS(e) & (~ FRAME_LOCK_MASK))
+'
+ 
+src <- '
+if (TYPEOF(env) == NILSXP)
+error("use of NULL environment is defunct");
+if (TYPEOF(env) != ENVSXP)
+error("not an environment");
+ 
+UNLOCK_FRAME(env);
+ 
+// Return TRUE if unlocked; FALSE otherwise
+SEXP result = PROTECT( Rf_allocVector(LGLSXP, 1) );
+LOGICAL(result)[0] = FRAME_IS_LOCKED(env) == 0;
+UNPROTECT(1);
+ 
+return result;
+'
+ 
+unlockEnvironment <- cfunction(signature(env = "environment"),
+includes = inc,
+body = src)
+    
 
-  utils::globalVariables(c("nastyHack_glm.family", "nastyHack_x.df"))
-   
-  sortX<- function(Y,X, glm.family, wt)
-   {
-        fitvec<- rep(NA, times = ncol(X))
+    nsEnv <- asNamespace('BMA')
+    unlockEnvironment(nsEnv)
+    nsEnv$glob <- function() {
+        utils::globalVariables(parent.env(environment()))
+    }
+    environment(nsEnv$glob) <- nsEnv
+    pkgEnv <- as.environment('package:BMA')
+    unlockEnvironment(pkgEnv)
+    pkgEnv$glob <- nsEnv$glob
+    exportEnv <- nsEnv$.__NAMESPACE__.$exports
+    exportEnv$glob <- c(glob="glob")
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+    utils::globalVariables(c("nastyHack_glm.family", "nastyHack_x.df"))
+    
+    sortX <- function(Y, X, glm.family, wt) {
+        fitvec <- rep(NA, times = ncol(X))
         nastyHack_glm.family <- glm.family
         nastyHack_x.df <- data.frame(X)
-        
-        glm.out <- glm(Y ~ 1 , family = nastyHack_glm.family, weights = wt, data = nastyHack_x.df) 
-        scp<- formula(paste("~", paste(colnames(X), sep = "", collapse = " + ")))
-        
-        addglm <- add1(glm.out, scope = scp , test = "Chisq", 
-                       data = nastyHack_x.df)
-
-# CF: changed 20110527 for R 2.14.0 compatibility
-#       fitvec <- addglm$"Pr(Chi)"[-1]
-        fitvec <- addglm[-1, grep("^P.*Chi",names(addglm))]
-        
-        initial.order<- order(fitvec,decreasing = FALSE)
-        sortedX<- X[, initial.order]
-        
+        glm.out <- glm(Y ~ 1, family = nastyHack_glm.family, 
+            weights = wt, data = nastyHack_x.df)
+        scp <- formula(paste("~", paste(colnames(X), sep = "", 
+            collapse = " + ")))
+        addglm <- add1(glm.out, scope = scp, test = "Chisq", 
+            data = nastyHack_x.df)
+        fitvec <- addglm[-1, grep("^P.*Chi", names(addglm))]
+        initial.order <- order(fitvec, decreasing = FALSE)
+        sortedX <- X[, initial.order]
         return(list(sortedX = sortedX, initial.order = initial.order))
-   }
-     X<-x
- 
+    }
+    X <- x
     cl <- match.call()
-    printC<- printCGen(verbose)
-   
-   # if factor.type = FALSE then individual factor levels can be dropped, and we
-   # need to convert X into its design matrix before we do any iterations
-   if (factor.type == FALSE)
-   {
-     x.df <- data.frame( X)
-     X <- model.matrix(terms.formula(~., data = x.df), data = x.df)[,-1]
-   }
-   
-   ### sort variables prior to running iterations if required
-   
-   if (!sorted)
-   {
+    printC <- printCGen(verbose)
+    if (factor.type == FALSE) {
+        x.df <- data.frame(X)
+        X <- model.matrix(terms.formula(~., data = x.df), data = x.df)[, 
+            -1]
+    }
+    if (!sorted) {
         printC("sorting X")
-        sorted<- sortX(Y,X, glm.family, wt = wt)
-        sortedX<- sorted$sortedX
-        initial.order<- sorted$initial.order
-   }
-   else 
-   {
-        sortedX<- X
-        initial.order<- 1:ncol(sortedX)
-   }
-   
-   
-   
-   
-   
-   #### Iteration Initiation
-
-   nVar<- ncol(sortedX)
-   # make sure that we do not try to use more columns at a time than are present
-   maxNvar <- min (maxNvar, nVar)
-
-   stopVar <- 0
-   nextVar <- maxNvar + 1
-   current.probne0<- rep(0, maxNvar)
-   maxProbne0<- rep(0, times = nVar)
-   nTimes<- rep(0, times = nVar)
-   currIter <- 0
-   first.in.model<- rep(NA, times = nVar)
-   new.vars<- 1:maxNvar
-   first.in.model[new.vars]<- currIter + 1
-   iter.dropped<- rep(NA, times = nVar)
-   currentSet<- NULL
-
-   current_state<- list(Y = Y,
-                        sortedX = sortedX,
-                        wt = wt,
-                        call = cl,
-                        initial.order = initial.order,
-                        thresProbne0 = thresProbne0,
-                        maxNvar = maxNvar,
-                        glm.family = glm.family,
-                        nIter = nIter,
-                        verbose = verbose,
-                        nVar = nVar,
-                        currentSet = currentSet,
-                        new.vars= new.vars,
-                        stopVar = stopVar,
-                        nextVar = nextVar,
-                        current.probne0 = current.probne0,
-                        maxProbne0 = maxProbne0,
-                        nTimes = nTimes,
-                        currIter = currIter,
-                        first.in.model = first.in.model,
-                        iter.dropped = iter.dropped) 
-   class(current_state)<- "iBMA.intermediate.glm"
-   result<- iBMA.glm.iBMA.intermediate.glm(current_state, ...)
-   result
-
- 
+        sorted <- sortX(Y, X, glm.family, wt = wt)
+        sortedX <- sorted$sortedX
+        initial.order <- sorted$initial.order
+    }
+    else {
+        sortedX <- X
+        initial.order <- 1:ncol(sortedX)
+    }
+    nVar <- ncol(sortedX)
+    maxNvar <- min(maxNvar, nVar)
+    stopVar <- 0
+    nextVar <- maxNvar + 1
+    current.probne0 <- rep(0, maxNvar)
+    maxProbne0 <- rep(0, times = nVar)
+    nTimes <- rep(0, times = nVar)
+    currIter <- 0
+    first.in.model <- rep(NA, times = nVar)
+    new.vars <- 1:maxNvar
+    first.in.model[new.vars] <- currIter + 1
+    iter.dropped <- rep(NA, times = nVar)
+    currentSet <- NULL
+    current_state <- list(Y = Y, sortedX = sortedX, wt = wt, 
+        call = cl, initial.order = initial.order, thresProbne0 = thresProbne0, 
+        maxNvar = maxNvar, glm.family = glm.family, nIter = nIter, 
+        verbose = verbose, nVar = nVar, currentSet = currentSet, 
+        new.vars = new.vars, stopVar = stopVar, nextVar = nextVar, 
+        current.probne0 = current.probne0, maxProbne0 = maxProbne0, 
+        nTimes = nTimes, currIter = currIter, first.in.model = first.in.model, 
+        iter.dropped = iter.dropped)
+    class(current_state) <- "iBMA.intermediate.glm"
+    result <- iBMA.glm.iBMA.intermediate.glm(current_state, ...)
+    result
 }
-
-
-
-
-
 
 
 ### this function does a set number of iterations of iBMA, returning an intermediate result unless it is finished,

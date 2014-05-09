@@ -201,7 +201,7 @@ test.iBMA.surv
 summary(test.iBMA.surv)
 }
 
-
+\dontrun{
 ############ iBMA.bicreg ... degenerate example
 library(MASS)
 data(UScrime)
@@ -224,6 +224,7 @@ iBMA.bicreg.crime <- iBMA.bicreg( x = UScrime_plus_noise,
  Y = y, thresProbne0 = 5, verbose = TRUE, maxNvar = 30, nIter = 2)
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
+}
 
 \dontrun{
 # run from current state until completion
@@ -231,6 +232,17 @@ iBMA.bicreg.crime <- iBMA.bicreg( iBMA.bicreg.crime, nIter = 200)
 summary(iBMA.bicreg.crime)
 orderplot(iBMA.bicreg.crime)
 }
+
+set.seed(0)
+x <- matrix( rnorm(50*30), 50, 30)
+lp <- apply( x[,1:5], 1, sum)
+iBMA.bicreg.ex <- iBMA.bicreg( x = x,  Y = lp, thresProbne0 = 5, maxNvar = 20)
+
+explp <- exp(lp)
+prob <- explp/(1+explp)
+y=rbinom(n=length(prob),prob=prob,size=1)
+iBMA.glm.ex <- iBMA.glm( x = x, Y = y, glm.family = "binomial",
+                         factor.type = FALSE, thresProbne0 = 5, maxNvar = 20)
 
 cat("\n\n CAUTION: iBMA.bicreg can give degenerate results when")
 cat(" the number of predictor variables is large\n\n")
