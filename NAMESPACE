@@ -1,5 +1,7 @@
 useDynLib(BMA)
 
+import(survival, leaps, robustbase)
+
 export(bicreg)
 
 export(bic.glm,

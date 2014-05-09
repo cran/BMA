@@ -1,3 +1,8 @@
+CHANGES for BMA 3.17
+- fixed create.assign [Hana Sevcikova]
+- fixed problems with factor handling [Horace Tso]
+- fixed subsetting for prior.param when columns are dropped
+	
 CHANGES for BMA 3.16.2.3
 - fixed names(probne0) in bic.glm.data.frame to work shen when dropped == 0
 - changed default nbest to 150 for bicreg [overlooked earlier]
