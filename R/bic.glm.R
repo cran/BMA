@@ -10,8 +10,6 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
     ...) 
 {
 
-    print(length(prior.param))
-
     namx <- names(x)
 
     if (is.null(colnames(x))) colnames(x) <- 1:ncol(x)
@@ -334,7 +332,6 @@ function (x, y, glm.family, wt = rep(1, nrow(x)), strict = FALSE,
         a$label <- c("NULL", a$label)
         a$which <- rbind(rep(FALSE, ncol(x)), a$which)
         nmod <- length(a$size)
-        print(c(length(prior.param),ncol(x)))
         prior.mat <- matrix(rep(prior.param, nmod), nmod, ncol(x), 
             byrow = TRUE)
         prior <- apply(a$which*prior.mat + (!a$which)*(1 - prior.mat), 1, prod)

@@ -1,3 +1,5 @@
+CHANGES for BMA 3.18.1
+- removed printing in bic.glm.R
 CHANGES for BMA 3.18
 - namespace unlocking added to allow global variables in iBMA [Max Henschell]
 	
