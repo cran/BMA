@@ -50,9 +50,6 @@ An object of class \code{bicreg} is a list containing at least the following com
 }
 \references{
 Raftery, Adrian E. (1995). Bayesian model selection in social research (with Discussion). Sociological Methodology 1995 (Peter V. Marsden, ed.), pp. 111-196, Cambridge, Mass.: Blackwells.
-
- An earlier version, issued as Working Paper 94-12, Center for Studies in Demography and  Ecology, University of Washington (1994) is available as a 
-Postscript file at \url{http://www.stat.washington.edu/tech.reports/bic.ps} 
  }
 \author{ Original Splus code developed by Adrian Raftery (\email{raftery@AT@stat.washington.edu}) and revised by Chris T. Volinsky. Translation to R by Ian Painter. }
 \seealso{ \code{\link{summary.bicreg}}, \code{\link{print.bicreg}}, \code{\link{plot.bicreg}} 

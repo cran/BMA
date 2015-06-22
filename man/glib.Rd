@@ -142,14 +142,9 @@ as.bic.glm(g, ...)
 }
 \references{ Raftery, A.E. (1988). Approximate Bayes factors for generalized linear  models. Technical Report no. 121, Department of Statistics, University of Washington. 
  
-Raftery, Adrian E. (1995). Bayesian model selection in social research (with Discussion). Sociological Methodology 1995 (Peter V. Marsden, ed.), pp. 111-196, Cambridge, Mass.: Blackwells. \
+Raftery, Adrian E. (1995). Bayesian model selection in social research (with Discussion). Sociological Methodology 1995 (Peter V. Marsden, ed.), pp. 111-196, Cambridge, Mass.: Blackwells. 
  
-An earlier version of this was issued as Working Paper 94-12, Center for Studies in Demography and Ecology, University of Washington, 
-and this is available as a Postscript file at \url{http://www.stat.washington.edu/tech.reports/bic.ps}.
-
 Raftery, A.E. (1996). Approximate Bayes factors and accounting for model uncertainty in generalized linear models. Biometrika (83: 251-266). 
-An earlier version of this was issued as Technical Report no. 255, Department of Statistics, University of Washington, and is available as a Postscript file at 
-\url{http://www.stat.washington.edu/tech.reports/tr255.ps}. 
 } 
 \author{ Original Splus code developed by Adrian Raftery \email{raftery@AT@stat.washington.edu} and revised by Chris T. Volinsky. Translation to R by Ian S. Painter. }
 \note{The outputs controlled by glimvar, output.priorvar and output.postvar can take up a lot of space, 

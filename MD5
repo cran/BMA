@@ -1,6 +1,6 @@
-bc7209f41ff15a4f4d05c1b033b57408 *ChangeLog
-458c15e8df37e0996be6ab2316778aad *DESCRIPTION
-d32bb54c65c88d2106ed8f1c1e2618b3 *NAMESPACE
+802e2c0a9662878912a81c283c02f71e *ChangeLog
+e36089a640916063fb0a1b15e2d19826 *DESCRIPTION
+8e11f8a1c523ba4247f6876496d310e7 *NAMESPACE
 4ecc8a62c82f30c76eb82fedea379eab *R/bic.glm.R
 4a1d99cd18f5d10beb3379ab7743cf3e *R/bic.surv.R
 3af4799821fdca3781e9a780d29dac17 *R/bicreg.R
@@ -9,7 +9,7 @@ d32bb54c65c88d2106ed8f1c1e2618b3 *NAMESPACE
 06a6d5e15651e7ac9fcb74417ca2ea6f *R/iBMA.glm.R
 879d65bf4d0efbbc66b052c7131a275a *R/iBMA.surv.R
 39337960219a40e6ab7ea37634a02917 *R/imageplot.bma.R
-0aa20215fd07c1c1db172cdeb0343d83 *R/mc3.R
+02af6c900c2cfe750c8b24b15d34c8c4 *R/mc3.R
 1dc67befb41eb1b066ef57d22c1e3bb7 *R/orderplot.iBMA.R
 f7822944425ade9b26ceda54996b60cf *R/plot.bic.R
 be438bbe29c0ec7bd3f5905d80d3c32c *R/predict.bic.glm.R
@@ -24,8 +24,8 @@ c305b931a7a4ae86039ab6e33f5ba0ae *R/summary.bic.R
 eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
 d14abad4aedb13e1e6830f512b3a7970 *man/bic.glm.Rd
 bec57f8757839766c7bbbe865d93106a *man/bic.surv.Rd
-4ad4d78b367676bf6c99a692e251e1ce *man/bicreg.Rd
-a754a9c4532d174b52f2bbb9324b6c5a *man/glib.Rd
+fbe9ace57eb356e116edb58a7d415ec3 *man/bicreg.Rd
+7d99d02f142760d2fd0bb3571fe5c873 *man/glib.Rd
 7207b7026910f9d8bc9e8aec06a8eb47 *man/iBMA.Rd
 a4fcdfec83e525eeaa4cc835bca6d8e4 *man/imageplot.Rd
 b95c75529dfdce9a30ee573db52ce20c *man/orderplot.iBMA.Rd

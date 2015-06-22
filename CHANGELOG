@@ -1,5 +1,13 @@
+CHANGES for BMA 3.18.4
+- changed rrcov to required from suggested
+- registered S3methods in NAMESPACE
+
+CHANGES for BMA 3.18.2, 3.18.3
+- removed obsolete references to .ps files
+
 CHANGES for BMA 3.18.1
 - removed printing in bic.glm.R
+
 CHANGES for BMA 3.18
 - namespace unlocking added to allow global variables in iBMA [Max Henschell]
 	
