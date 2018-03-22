@@ -1,5 +1,5 @@
-3f95758a631608a262f51ed216011e3a *ChangeLog
-09218ecf0e45648d102119ddc4fd130b *DESCRIPTION
+e9b9200b33c2d31b9a21f6a27df2cd8a *ChangeLog
+5aff1532e0f7c6bfd4bc1c0e4b7d3bb3 *DESCRIPTION
 40c54e0c9930cf75eab1d4e14e134cd0 *NAMESPACE
 4ecc8a62c82f30c76eb82fedea379eab *R/bic.glm.R
 4a1d99cd18f5d10beb3379ab7743cf3e *R/bic.surv.R
@@ -18,6 +18,7 @@ be438bbe29c0ec7bd3f5905d80d3c32c *R/predict.bic.glm.R
 878f7eff37f955896dde993fb5c63ff1 *R/print.iBMA.R
 c305b931a7a4ae86039ab6e33f5ba0ae *R/summary.bic.R
 1df7a4603a6fb29ad3d47f9b08060ac2 *data/race.RData
+c318794a64f939c7b1b907d2ba45a1d4 *data/vaso.txt.gz
 7caf0f54fa274df4c65dbb3900e8f178 *man/For.MC3.REG.Rd
 8b086b054b03513c1f7698b6543dfffa *man/MC3.REG.Rd
 257ec29eb5a8b935319ac951002885df *man/MC3.REG.choose.Rd
@@ -25,7 +26,7 @@ eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
 d14abad4aedb13e1e6830f512b3a7970 *man/bic.glm.Rd
 bec57f8757839766c7bbbe865d93106a *man/bic.surv.Rd
 fbe9ace57eb356e116edb58a7d415ec3 *man/bicreg.Rd
-7d99d02f142760d2fd0bb3571fe5c873 *man/glib.Rd
+3880b417b97a195691e7e8f7b6ce9a3b *man/glib.Rd
 7207b7026910f9d8bc9e8aec06a8eb47 *man/iBMA.Rd
 a4fcdfec83e525eeaa4cc835bca6d8e4 *man/imageplot.Rd
 b95c75529dfdce9a30ee573db52ce20c *man/orderplot.iBMA.Rd
@@ -36,5 +37,6 @@ f06758d80757eec2b356cf8ca0af89cc *man/predict.bic.glm.Rd
 8189e8c5bc9bd0d5f62ef53d7db59e4b *man/race.Rd
 402c4b5314161e2cf706ff36bbd17bbc *man/summary.bic.Rd
 fa0a5e95e4809172f0ea0a6bf58abaf1 *man/summary.iBMA.Rd
+d2757fd8dcce5b18a901a776d18a9e9c *man/vaso.Rd
 66789384e8f00f98a5caac792e4f24f6 *src/BMA_init.c
 be4a8741b0b243d59b78184391cd1f5a *src/fwleaps.f
