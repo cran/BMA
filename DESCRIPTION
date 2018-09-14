@@ -1,6 +1,6 @@
 Package: BMA
-Version: 3.18.8
-Date: 2018-03-22
+Version: 3.18.9
+Date: 2018-09-07
 Title: Bayesian Model Averaging
 Author: Adrian Raftery <raftery@uw.edu>, Jennifer Hoeting,
         Chris Volinsky, Ian Painter, Ka Yee Yeung
@@ -12,8 +12,8 @@ Depends: survival, leaps, robustbase, inline, rrcov
 Imports: methods
 Suggests: MASS
 License: GPL (>= 2)
-URL: http://www.research.att.com/~volinsky/bma.html
+URL: http://stats.research.att.com/volinsky/bma.html
 NeedsCompilation: yes
-Packaged: 2018-03-22 20:05:07 UTC; hana
+Packaged: 2018-09-07 19:03:17 UTC; hana
 Repository: CRAN
-Date/Publication: 2018-03-22 23:23:23 UTC
+Date/Publication: 2018-09-14 07:50:13 UTC
