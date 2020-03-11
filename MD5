@@ -1,7 +1,7 @@
-fbb0927b7c7d822721603c2f07fae0e3 *ChangeLog
-3e5966d2ffbe4f60e2fe5dc2dbff4b6c *DESCRIPTION
+4916cced7ea8842d13b00111654f03a0 *ChangeLog
+f61df577293f9746dbad5882c17a1906 *DESCRIPTION
 40c54e0c9930cf75eab1d4e14e134cd0 *NAMESPACE
-4ecc8a62c82f30c76eb82fedea379eab *R/bic.glm.R
+c63fd52eb97c5dd5030f240c22149b1e *R/bic.glm.R
 59e082367b983e9d4a447135ecf7afe8 *R/bic.surv.R
 3af4799821fdca3781e9a780d29dac17 *R/bicreg.R
 397cd67538d3740c9c33dfca325ad847 *R/glib.R
@@ -23,7 +23,7 @@ c318794a64f939c7b1b907d2ba45a1d4 *data/vaso.txt.gz
 8b086b054b03513c1f7698b6543dfffa *man/MC3.REG.Rd
 257ec29eb5a8b935319ac951002885df *man/MC3.REG.choose.Rd
 eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
-d14abad4aedb13e1e6830f512b3a7970 *man/bic.glm.Rd
+90ac331403253a5f4e810311812eb0df *man/bic.glm.Rd
 bec57f8757839766c7bbbe865d93106a *man/bic.surv.Rd
 fbe9ace57eb356e116edb58a7d415ec3 *man/bicreg.Rd
 3880b417b97a195691e7e8f7b6ce9a3b *man/glib.Rd
