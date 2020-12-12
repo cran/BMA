@@ -1,9 +1,9 @@
-4916cced7ea8842d13b00111654f03a0 *ChangeLog
-f61df577293f9746dbad5882c17a1906 *DESCRIPTION
+44d7c97fdb154415998e86670bcb93fc *ChangeLog
+40df873a68053854439f7dd614ecaf95 *DESCRIPTION
 40c54e0c9930cf75eab1d4e14e134cd0 *NAMESPACE
 c63fd52eb97c5dd5030f240c22149b1e *R/bic.glm.R
 59e082367b983e9d4a447135ecf7afe8 *R/bic.surv.R
-3af4799821fdca3781e9a780d29dac17 *R/bicreg.R
+bc556e1002fb695afb071f507b4a15cc *R/bicreg.R
 397cd67538d3740c9c33dfca325ad847 *R/glib.R
 79274308e825494bcc6b619626933f8d *R/iBMA.bicreg.R
 06a6d5e15651e7ac9fcb74417ca2ea6f *R/iBMA.glm.R
@@ -19,10 +19,10 @@ dfa8ec27952f756790276f9be37c1ba7 *R/predict.bicreg.R
 c305b931a7a4ae86039ab6e33f5ba0ae *R/summary.bic.R
 1df7a4603a6fb29ad3d47f9b08060ac2 *data/race.RData
 c318794a64f939c7b1b907d2ba45a1d4 *data/vaso.txt.gz
-7caf0f54fa274df4c65dbb3900e8f178 *man/For.MC3.REG.Rd
-8b086b054b03513c1f7698b6543dfffa *man/MC3.REG.Rd
-257ec29eb5a8b935319ac951002885df *man/MC3.REG.choose.Rd
-eaa8ae108efb2e117918e7c5e49ae57b *man/MC3.REG.logpost.Rd
+17cfe180314207ea40fad6a6182e8adc *man/For.MC3.REG.Rd
+38c8e958a05eed5a0ed964d5b18d236c *man/MC3.REG.Rd
+214266cd7a05b5e79bb9ecbc287acf36 *man/MC3.REG.choose.Rd
+f2908f2892bc3c510a9b64951d678df5 *man/MC3.REG.logpost.Rd
 90ac331403253a5f4e810311812eb0df *man/bic.glm.Rd
 bec57f8757839766c7bbbe865d93106a *man/bic.surv.Rd
 fbe9ace57eb356e116edb58a7d415ec3 *man/bicreg.Rd
