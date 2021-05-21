@@ -234,7 +234,6 @@ summary(glm.out.crime)
 # note the problems with the estimation of the posterior standard 
 # deviation (compare with bicreg example)
 }
-
 }
 \keyword{regression}
 \keyword{models}
