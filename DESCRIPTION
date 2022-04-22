@@ -1,6 +1,6 @@
 Package: BMA
-Version: 3.18.15
-Date: 2021-05-21
+Version: 3.18.17
+Date: 2022-04-22
 Title: Bayesian Model Averaging
 Author: Adrian Raftery <raftery@uw.edu>, Jennifer Hoeting,
         Chris Volinsky, Ian Painter, Ka Yee Yeung
@@ -15,6 +15,6 @@ License: GPL (>= 2)
 URL: http://stats.research.att.com/volinsky/bma.html,
         https://github.com/hanase/BMA
 NeedsCompilation: yes
-Packaged: 2021-05-21 21:09:40 UTC; hana
+Packaged: 2022-04-22 20:58:54 UTC; hana
 Repository: CRAN
-Date/Publication: 2021-05-21 22:02:10 UTC
+Date/Publication: 2022-04-22 21:50:13 UTC
