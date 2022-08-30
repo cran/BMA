@@ -123,7 +123,7 @@ s"))
         return(asgn)
     }
 
-    newdata <- as.data.frame(newdata[,object$input.names])
+    newdata <- as.data.frame(newdata[,object$namesx])
     nObs <- nrow(newdata)
     callList <- as.list(object$call)
     callFunc <- callList[[1]]
