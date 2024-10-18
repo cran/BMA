@@ -13,7 +13,7 @@ function (x, surv.t, cens, wt = rep(1, nrow(X)), thresProbne0 = 5,
     }
 
 
-# CF namespcae unlock from https://gist.github.com/wch/3280369
+# CF namespace unlock from https://gist.github.com/wch/3280369
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 inc <- '
@@ -43,8 +43,9 @@ return result;
 
 unlockEnvironment <- cfunction(signature(env = "environment"),
 includes = inc,
-body = src)
-    
+body = src,
+language = "C")
+
     nsEnv <- asNamespace('BMA')
     unlockEnvironment(nsEnv)
     nsEnv$glob <- function() {
