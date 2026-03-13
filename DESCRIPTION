@@ -1,6 +1,6 @@
 Package: BMA
-Version: 3.18.20
-Date: 2025-01-10
+Version: 3.18.21
+Date: 2026-03-13
 Title: Bayesian Model Averaging
 Authors@R: c(person(given = "Adrian",
                       family = "Raftery",
@@ -32,7 +32,7 @@ Suggests: MASS
 License: GPL (>= 2)
 URL: https://github.com/hanase/BMA
 NeedsCompilation: yes
-Packaged: 2025-01-11 01:18:21 UTC; hana
+Packaged: 2026-03-13 15:03:22 UTC; hana
 Author: Adrian Raftery [aut],
   Jennifer Hoeting [aut],
   Chris Volinsky [aut],
@@ -41,4 +41,4 @@ Author: Adrian Raftery [aut],
   Hana Sevcikova [cre]
 Maintainer: Hana Sevcikova <hanas@uw.edu>
 Repository: CRAN
-Date/Publication: 2025-01-11 06:00:13 UTC
+Date/Publication: 2026-03-13 16:00:02 UTC
